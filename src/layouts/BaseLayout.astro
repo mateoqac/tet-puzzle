@@ -1,0 +1,78 @@
+---
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  robots?: string;
+  showFooter?: boolean;
+  showLegalLinks?: boolean;
+}
+
+const siteUrl = "https://tetonor.app";
+const {
+  title,
+  description,
+  canonicalPath = "/",
+  robots = "index, follow",
+  showFooter = true,
+  showLegalLinks = true,
+} = Astro.props;
+const canonicalUrl = `${siteUrl}${canonicalPath}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#f5f5f0" />
+
+    <!-- Robots -->
+    <meta name="robots" content={robots} />
+
+    <!-- Additional head content from pages -->
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+    {showFooter && <Footer showLegalLinks={showLegalLinks} />}
+  </body>
+</html>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Times New Roman", Times, Georgia, serif;
+    background: #f5f5f0;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      padding: 1rem 0.5rem;
+    }
+  }
+</style>

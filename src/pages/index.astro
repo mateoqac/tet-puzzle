@@ -1,49 +1,92 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 import TetonorPuzzle from "../components/TetonorPuzzle";
 import { generateBeginnerPuzzle } from "../lib/puzzleGenerator";
 
 const puzzle = generateBeginnerPuzzle();
 
-// SEO Configuration
-const siteUrl = "https://tetonor.com"; // Replace with your actual domain
-const pageUrl = `${siteUrl}/`;
+const siteUrl = "https://tetonor.app";
 const title = "Tetonor Puzzle - Free Online Number Logic Game | Sunday Times";
 const description =
   "Play Tetonor online, the popular number puzzle from The Sunday Times. Match pairs of numbers to create sums and products in this challenging brain-training logic game. Free to play daily.";
 const imageUrl = `${siteUrl}/og-image.png`;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": `${siteUrl}/#webapp`,
+      name: "Tetonor",
+      url: siteUrl,
+      description: description,
+      applicationCategory: "GameApplication",
+      operatingSystem: "Any",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      browserRequirements: "Requires JavaScript enabled",
+      inLanguage: "en-US",
+    },
+    {
+      "@type": "Game",
+      "@id": `${siteUrl}/#game`,
+      name: "Tetonor",
+      description:
+        "Tetonor is a number puzzle featured in The Sunday Times where players match pairs of numbers to achieve target sums and products.",
+      gamePlatform: ["Web browser", "Mobile browser"],
+      genre: ["Puzzle", "Logic", "Mathematics"],
+      numberOfPlayers: {
+        "@type": "QuantitativeValue",
+        value: "1",
+      },
+      playMode: "SinglePlayer",
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What is Tetonor?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Tetonor is a number puzzle that appears in The Sunday Times newspaper. Players must match pairs of numbers from a pool to fill cells in a grid, where each pair must satisfy both a sum and a product requirement.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How do you play Tetonor?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "In Tetonor, you are given a grid with cells showing target sums and products. You must select pairs of numbers from the available pool that add up to the sum and multiply to give the product. Each number can only be used once.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Where does Tetonor come from?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Tetonor is a puzzle featured in The Sunday Times newspaper. It challenges players with number logic and mathematical reasoning.",
+          },
+        },
+      ],
+    },
+  ],
+};
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-
-    <!-- Primary Meta Tags -->
-    <title>{title}</title>
-    <meta name="title" content={title} />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href={pageUrl} />
-
-    <!-- Favicon and Icons -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#f5f5f0" />
-
-    <!-- Robots -->
-    <meta
-      name="robots"
-      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-    />
-
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/"
+  robots="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+>
+  <Fragment slot="head">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={pageUrl} />
+    <meta property="og:url" content={siteUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={imageUrl} />
@@ -54,7 +97,7 @@ const imageUrl = `${siteUrl}/og-image.png`;
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content={pageUrl} />
+    <meta name="twitter:url" content={siteUrl} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
@@ -67,114 +110,33 @@ const imageUrl = `${siteUrl}/og-image.png`;
     <meta name="author" content="Tetonor" />
 
     <!-- Structured Data -->
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebApplication",
-            "@id": `${siteUrl}/#webapp`,
-            name: "Tetonor",
-            url: siteUrl,
-            description: description,
-            applicationCategory: "GameApplication",
-            operatingSystem: "Any",
-            offers: {
-              "@type": "Offer",
-              price: "0",
-              priceCurrency: "USD",
-            },
-            browserRequirements: "Requires JavaScript enabled",
-            inLanguage: "en-US",
-          },
-          {
-            "@type": "Game",
-            "@id": `${siteUrl}/#game`,
-            name: "Tetonor",
-            description:
-              "Tetonor is a number puzzle featured in The Sunday Times where players match pairs of numbers to achieve target sums and products.",
-            gamePlatform: ["Web browser", "Mobile browser"],
-            genre: ["Puzzle", "Logic", "Mathematics"],
-            numberOfPlayers: {
-              "@type": "QuantitativeValue",
-              value: "1",
-            },
-            playMode: "SinglePlayer",
-          },
-          {
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is Tetonor?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Tetonor is a number puzzle that appears in The Sunday Times newspaper. Players must match pairs of numbers from a pool to fill cells in a grid, where each pair must satisfy both a sum and a product requirement.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How do you play Tetonor?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "In Tetonor, you are given a grid with cells showing target sums and products. You must select pairs of numbers from the available pool that add up to the sum and multiply to give the product. Each number can only be used once.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Where does Tetonor come from?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Tetonor is a puzzle featured in The Sunday Times newspaper. It challenges players with number logic and mathematical reasoning.",
-                },
-              },
-            ],
-          },
-        ],
-      })}
-    />
-  </head>
-  <body>
-    <main id="main-content" role="main">
-      <header class="visually-hidden">
-        <h1>Tetonor - The Sunday Times Number Puzzle Game</h1>
-        <p>
-          Tetonor is a challenging number logic puzzle featured in The Sunday
-          Times newspaper. The puzzle presents a grid where each cell contains
-          two target numbers: a sum and a product. Players must find pairs of
-          numbers from a given pool that both add up to the sum and multiply to
-          give the product. Each number in the pool can only be used once,
-          requiring careful logical deduction to solve the entire grid. This
-          online version lets you play Tetonor puzzles for free, with varying
-          difficulty levels from easy to expert.
-        </p>
-      </header>
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </Fragment>
 
-      <article itemscope itemtype="https://schema.org/Game">
-        <meta itemprop="name" content="Tetonor" />
-        <meta itemprop="description" content={description} />
-        <TetonorPuzzle client:load initialPuzzle={puzzle} />
-      </article>
-    </main>
-  </body>
-</html>
+  <main id="main-content" role="main">
+    <header class="visually-hidden">
+      <h1>Tetonor - The Sunday Times Number Puzzle Game</h1>
+      <p>
+        Tetonor is a challenging number logic puzzle featured in The Sunday
+        Times newspaper. The puzzle presents a grid where each cell contains two
+        target numbers: a sum and a product. Players must find pairs of numbers
+        from a given pool that both add up to the sum and multiply to give the
+        product. Each number in the pool can only be used once, requiring
+        careful logical deduction to solve the entire grid. This online version
+        lets you play Tetonor puzzles for free, with varying difficulty levels
+        from easy to expert.
+      </p>
+    </header>
 
-<style is:global>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+    <article itemscope itemtype="https://schema.org/Game">
+      <meta itemprop="name" content="Tetonor" />
+      <meta itemprop="description" content={description} />
+      <TetonorPuzzle client:load initialPuzzle={puzzle} />
+    </article>
+  </main>
+</BaseLayout>
 
-  body {
-    font-family: "Times New Roman", Times, Georgia, serif;
-    background: #f5f5f0;
-    min-height: 100vh;
-    padding: 2rem 1rem;
-  }
-
-  /* Visually hidden but accessible to screen readers and crawlers */
+<style>
   .visually-hidden {
     position: absolute;
     width: 1px;
@@ -185,11 +147,5 @@ const imageUrl = `${siteUrl}/og-image.png`;
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
-  }
-
-  @media (max-width: 768px) {
-    body {
-      padding: 1rem 0.5rem;
-    }
   }
 </style>
