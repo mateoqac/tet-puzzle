@@ -77,7 +77,7 @@ export interface PuzzleConfig {
   /** Number of blank pairs (numbers to be deduced) */
   blankPairs: number;
   /** Difficulty level affects value ranges and blank placement */
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: 'easy' | 'moderate' | 'difficult';
 }
 
 /**

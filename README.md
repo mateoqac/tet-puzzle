@@ -109,19 +109,19 @@ State flows unidirectionally:
 ### Prerequisites
 
 - Node.js 18+
-- npm or pnpm
+- pnpm
 
 ### Installation
 
 ```bash
 cd tetonor-puzzle
-npm install
+pnpm install
 ```
 
 ### Development
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Visit `http://localhost:4321` to play the game.
@@ -129,7 +129,7 @@ Visit `http://localhost:4321` to play the game.
 ### Build for Production
 
 ```bash
-npm run build
+pnpm build
 ```
 
 The built site will be in the `dist/` directory.
@@ -137,7 +137,13 @@ The built site will be in the `dist/` directory.
 ### Preview Production Build
 
 ```bash
-npm run preview
+pnpm preview
+```
+
+### Testing
+
+```bash
+pnpm test
 ```
 
 ## Configuration

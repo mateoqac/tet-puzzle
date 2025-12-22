@@ -150,7 +150,7 @@ function applyBlankPairs(
         }
         break;
 
-      case 'medium':
+      case 'moderate':
         // Randomly blank one or both numbers
         if (Math.random() > 0.3) {
           pair.first = null;
@@ -164,7 +164,7 @@ function applyBlankPairs(
         }
         break;
 
-      case 'hard':
+      case 'difficult':
         // Usually blank both numbers
         pair.first = null;
         pair.second = null;
@@ -244,21 +244,21 @@ export const PRESET_CONFIGS: Record<string, PuzzleConfig> = {
     blankPairs: 0,
     difficulty: 'easy',
   },
-  medium: {
+  moderate: {
     rows: 4,
     cols: 4,
     minValue: 2,
     maxValue: 20,
     blankPairs: 0,
-    difficulty: 'medium',
+    difficulty: 'moderate',
   },
-  hard: {
+  difficult: {
     rows: 4,
     cols: 4,
     minValue: 2,
     maxValue: 50,
     blankPairs: 0,
-    difficulty: 'hard',
+    difficulty: 'difficult',
   },
 };
 
@@ -293,11 +293,11 @@ function countTargetCollisions(
 }
 
 /**
- * ESTRATEGIA PRINCIPIANTE
- * - Números pequeños (1-12)
+ * ESTRATEGIA PRINCIPIANTE (Easy)
+ * - Números del 1-50
  * - Números en el strip PUEDEN repetirse
  * - Máximo 1-2 targets repetidos si es necesario
- * - 0-3 espacios en blanco
+ * - 5-6 espacios en blanco
  */
 export function generateBeginnerPuzzle(): PuzzleState {
   const pairCount = 8;
@@ -314,9 +314,9 @@ export function generateBeginnerPuzzle(): PuzzleState {
     while (pairs.length < pairCount && iterations < 500) {
       iterations++;
 
-      // Números pequeños del 1-12 (pueden repetirse en diferentes pares)
-      const first = Math.floor(Math.random() * 12) + 1;
-      const second = Math.floor(Math.random() * 12) + 1;
+      // Números del 1-50
+      const first = Math.floor(Math.random() * 50) + 1;
+      const second = Math.floor(Math.random() * 50) + 1;
 
       const [min, max] = first <= second ? [first, second] : [second, first];
       const pairKey = `${min}-${max}`;
@@ -337,7 +337,7 @@ export function generateBeginnerPuzzle(): PuzzleState {
     }
 
     if (pairs.length === pairCount) {
-      const blankCount = Math.floor(Math.random() * 4);
+      const blankCount = 5 + Math.floor(Math.random() * 2); // 5-6 blanks
       return buildPuzzleFromPairs(pairs, blankCount);
     }
   }
@@ -352,8 +352,8 @@ function generateBeginnerPuzzleFallback(): PuzzleState {
   const usedPairs = new Set<string>();
 
   while (pairs.length < pairCount) {
-    const first = Math.floor(Math.random() * 12) + 1;
-    const second = Math.floor(Math.random() * 12) + 1;
+    const first = Math.floor(Math.random() * 50) + 1;
+    const second = Math.floor(Math.random() * 50) + 1;
     const [min, max] = first <= second ? [first, second] : [second, first];
     const pairKey = `${min}-${max}`;
 
@@ -367,24 +367,20 @@ function generateBeginnerPuzzleFallback(): PuzzleState {
     }
   }
 
-  const blankCount = Math.floor(Math.random() * 4);
+  const blankCount = 5 + Math.floor(Math.random() * 2); // 5-6 blanks
   return buildPuzzleFromPairs(pairs, blankCount);
 }
 
 /**
- * ESTRATEGIA INTERMEDIO
- * - Números medianos (1-23)
- * - Incluye 1 y números primos (2, 3, 5, 7, 11, 13, 17, 19, 23)
- * - Productos hasta ~500
+ * ESTRATEGIA INTERMEDIO (Moderate)
+ * - Números del 1-50
  * - Máximo 1-2 targets repetidos si es necesario
- * - 3-6 espacios en blanco en la tira
+ * - 7-8 espacios en blanco en la tira
  */
 export function generateIntermediatePuzzle(): PuzzleState {
   const pairCount = 8;
   const maxAttempts = 100;
   const maxAllowedCollisions = 2;
-
-  const primes = [1, 2, 3, 5, 7, 11, 13, 17, 19, 23];
 
   for (let attempt = 0; attempt < maxAttempts; attempt++) {
     const pairs: NumberPair[] = [];
@@ -395,18 +391,10 @@ export function generateIntermediatePuzzle(): PuzzleState {
     let iterations = 0;
     while (pairs.length < pairCount && iterations < 500) {
       iterations++;
-      let first: number, second: number;
 
-      if (Math.random() < 0.3) {
-        first = primes[Math.floor(Math.random() * primes.length)];
-        second = Math.floor(Math.random() * 18) + 3;
-      } else if (Math.random() < 0.5) {
-        first = Math.floor(Math.random() * 11) + 1;
-        second = Math.floor(Math.random() * 15) + 5;
-      } else {
-        first = Math.floor(Math.random() * 9) + 1;
-        second = Math.floor(Math.random() * 14) + 8;
-      }
+      // Números del 1-50
+      const first = Math.floor(Math.random() * 50) + 1;
+      const second = Math.floor(Math.random() * 50) + 1;
 
       const [min, max] = first <= second ? [first, second] : [second, first];
       const pairKey = `${min}-${max}`;
@@ -427,7 +415,7 @@ export function generateIntermediatePuzzle(): PuzzleState {
     }
 
     if (pairs.length === pairCount) {
-      const blankCount = 3 + Math.floor(Math.random() * 4);
+      const blankCount = 7 + Math.floor(Math.random() * 2); // 7-8 blanks
       return buildPuzzleFromPairs(pairs, blankCount);
     }
   }
@@ -439,18 +427,10 @@ function generateIntermediatePuzzleFallback(): PuzzleState {
   const pairCount = 8;
   const pairs: NumberPair[] = [];
   const usedPairs = new Set<string>();
-  const primes = [1, 2, 3, 5, 7, 11, 13, 17, 19, 23];
 
   while (pairs.length < pairCount) {
-    let first: number, second: number;
-
-    if (Math.random() < 0.3) {
-      first = primes[Math.floor(Math.random() * primes.length)];
-      second = Math.floor(Math.random() * 18) + 3;
-    } else {
-      first = Math.floor(Math.random() * 11) + 1;
-      second = Math.floor(Math.random() * 15) + 5;
-    }
+    const first = Math.floor(Math.random() * 50) + 1;
+    const second = Math.floor(Math.random() * 50) + 1;
 
     const [min, max] = first <= second ? [first, second] : [second, first];
     const pairKey = `${min}-${max}`;
@@ -465,24 +445,20 @@ function generateIntermediatePuzzleFallback(): PuzzleState {
     }
   }
 
-  const blankCount = 3 + Math.floor(Math.random() * 4);
+  const blankCount = 7 + Math.floor(Math.random() * 2); // 7-8 blanks
   return buildPuzzleFromPairs(pairs, blankCount);
 }
 
 /**
- * ESTRATEGIA AVANZADO
- * - Números grandes (1-50)
- * - Incluye 1 y números primos (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47)
- * - Productos grandes (hasta 2500)
+ * ESTRATEGIA AVANZADO (Difficult)
+ * - Números del 1-50
  * - Máximo 1-2 targets repetidos si es necesario
- * - 6-9 espacios en blanco en la tira
+ * - 10-11 espacios en blanco (solo 5-6 números visibles)
  */
 export function generateAdvancedPuzzle(): PuzzleState {
   const pairCount = 8;
   const maxAttempts = 100;
   const maxAllowedCollisions = 2;
-
-  const largePrimes = [17, 19, 23, 29, 31, 37, 41, 43, 47];
 
   for (let attempt = 0; attempt < maxAttempts; attempt++) {
     const pairs: NumberPair[] = [];
@@ -493,15 +469,10 @@ export function generateAdvancedPuzzle(): PuzzleState {
     let iterations = 0;
     while (pairs.length < pairCount && iterations < 500) {
       iterations++;
-      let first: number, second: number;
 
-      if (Math.random() < 0.3) {
-        first = largePrimes[Math.floor(Math.random() * largePrimes.length)];
-        second = Math.floor(Math.random() * 25) + 10;
-      } else {
-        first = Math.floor(Math.random() * 21) + 1;
-        second = Math.floor(Math.random() * 30) + 15;
-      }
+      // Números del 1-50
+      const first = Math.floor(Math.random() * 50) + 1;
+      const second = Math.floor(Math.random() * 50) + 1;
 
       const [min, max] = first <= second ? [first, second] : [second, first];
       const pairKey = `${min}-${max}`;
@@ -522,7 +493,7 @@ export function generateAdvancedPuzzle(): PuzzleState {
     }
 
     if (pairs.length === pairCount) {
-      const blankCount = 6 + Math.floor(Math.random() * 4);
+      const blankCount = 10 + Math.floor(Math.random() * 2); // 10-11 blanks (solo 5-6 visibles)
       return buildPuzzleFromPairs(pairs, blankCount);
     }
   }
@@ -534,18 +505,10 @@ function generateAdvancedPuzzleFallback(): PuzzleState {
   const pairCount = 8;
   const pairs: NumberPair[] = [];
   const usedPairs = new Set<string>();
-  const largePrimes = [17, 19, 23, 29, 31, 37, 41, 43, 47];
 
   while (pairs.length < pairCount) {
-    let first: number, second: number;
-
-    if (Math.random() < 0.3) {
-      first = largePrimes[Math.floor(Math.random() * largePrimes.length)];
-      second = Math.floor(Math.random() * 25) + 10;
-    } else {
-      first = Math.floor(Math.random() * 21) + 1;
-      second = Math.floor(Math.random() * 30) + 15;
-    }
+    const first = Math.floor(Math.random() * 50) + 1;
+    const second = Math.floor(Math.random() * 50) + 1;
 
     const [min, max] = first <= second ? [first, second] : [second, first];
     const pairKey = `${min}-${max}`;
@@ -560,7 +523,7 @@ function generateAdvancedPuzzleFallback(): PuzzleState {
     }
   }
 
-  const blankCount = 6 + Math.floor(Math.random() * 4);
+  const blankCount = 10 + Math.floor(Math.random() * 2); // 10-11 blanks (solo 5-6 visibles)
   return buildPuzzleFromPairs(pairs, blankCount);
 }
 
