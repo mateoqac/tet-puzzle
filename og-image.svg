@@ -1,0 +1,68 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#f5f5f0"/>
+
+  <!-- Decorative grid pattern (subtle) -->
+  <g opacity="0.08">
+    <line x1="400" y1="0" x2="400" y2="630" stroke="#333" stroke-width="1"/>
+    <line x1="800" y1="0" x2="800" y2="630" stroke="#333" stroke-width="1"/>
+    <line x1="0" y1="210" x2="1200" y2="210" stroke="#333" stroke-width="1"/>
+    <line x1="0" y1="420" x2="1200" y2="420" stroke="#333" stroke-width="1"/>
+  </g>
+
+  <!-- Main puzzle grid illustration (right side) -->
+  <g transform="translate(720, 180)">
+    <!-- Grid cells -->
+    <rect x="0" y="0" width="80" height="80" fill="white" stroke="#2c2c2c" stroke-width="2"/>
+    <rect x="90" y="0" width="80" height="80" fill="white" stroke="#2c2c2c" stroke-width="2"/>
+    <rect x="180" y="0" width="80" height="80" fill="white" stroke="#2c2c2c" stroke-width="2"/>
+    <rect x="270" y="0" width="80" height="80" fill="white" stroke="#2c2c2c" stroke-width="2"/>
+
+    <rect x="0" y="90" width="80" height="80" fill="white" stroke="#2c2c2c" stroke-width="2"/>
+    <rect x="90" y="90" width="80" height="80" fill="white" stroke="#2c2c2c" stroke-width="2"/>
+    <rect x="180" y="90" width="80" height="80" fill="white" stroke="#2c2c2c" stroke-width="2"/>
+    <rect x="270" y="90" width="80" height="80" fill="white" stroke="#2c2c2c" stroke-width="2"/>
+
+    <!-- Sample numbers in grid -->
+    <text x="40" y="55" font-family="Georgia, serif" font-size="36" fill="#2c2c2c" text-anchor="middle" font-weight="500">12</text>
+    <text x="130" y="55" font-family="Georgia, serif" font-size="36" fill="#2c2c2c" text-anchor="middle" font-weight="500">8</text>
+    <text x="220" y="55" font-family="Georgia, serif" font-size="36" fill="#2c2c2c" text-anchor="middle" font-weight="500">15</text>
+    <text x="310" y="55" font-family="Georgia, serif" font-size="36" fill="#2c2c2c" text-anchor="middle" font-weight="500">6</text>
+
+    <text x="40" y="145" font-family="Georgia, serif" font-size="36" fill="#2c2c2c" text-anchor="middle" font-weight="500">9</text>
+    <text x="130" y="145" font-family="Georgia, serif" font-size="36" fill="#2c2c2c" text-anchor="middle" font-weight="500">20</text>
+    <text x="220" y="145" font-family="Georgia, serif" font-size="36" fill="#2c2c2c" text-anchor="middle" font-weight="500">4</text>
+    <text x="310" y="145" font-family="Georgia, serif" font-size="36" fill="#2c2c2c" text-anchor="middle" font-weight="500">10</text>
+
+    <!-- Number strip below -->
+    <rect x="0" y="200" width="65" height="50" fill="#e8e8dc" stroke="#2c2c2c" stroke-width="2"/>
+    <rect x="75" y="200" width="65" height="50" fill="#e8e8dc" stroke="#2c2c2c" stroke-width="2"/>
+    <rect x="150" y="200" width="65" height="50" fill="#e8e8dc" stroke="#2c2c2c" stroke-width="2"/>
+    <rect x="225" y="200" width="65" height="50" fill="#e8e8dc" stroke="#2c2c2c" stroke-width="2"/>
+
+    <text x="32.5" y="233" font-family="Georgia, serif" font-size="28" fill="#2c2c2c" text-anchor="middle" font-weight="600">2</text>
+    <text x="107.5" y="233" font-family="Georgia, serif" font-size="28" fill="#2c2c2c" text-anchor="middle" font-weight="600">3</text>
+    <text x="182.5" y="233" font-family="Georgia, serif" font-size="28" fill="#2c2c2c" text-anchor="middle" font-weight="600">4</text>
+    <text x="257.5" y="233" font-family="Georgia, serif" font-size="28" fill="#2c2c2c" text-anchor="middle" font-weight="600">5</text>
+  </g>
+
+  <!-- Left side: Branding and tagline -->
+  <g transform="translate(80, 220)">
+    <!-- "Tetonor" title -->
+    <text x="0" y="0" font-family="Times New Roman, Georgia, serif" font-size="92" fill="#2c2c2c" font-weight="700" letter-spacing="-2">TETONOR</text>
+
+    <!-- Decorative line -->
+    <line x1="0" y1="25" x2="420" y2="25" stroke="#8b7355" stroke-width="3"/>
+
+    <!-- Tagline -->
+    <text x="0" y="70" font-family="Georgia, serif" font-size="28" fill="#5c5c5c" font-style="italic">A Challenging Numerical</text>
+    <text x="0" y="108" font-family="Georgia, serif" font-size="28" fill="#5c5c5c" font-style="italic">Logic Puzzle</text>
+
+    <!-- Description -->
+    <text x="0" y="160" font-family="Georgia, serif" font-size="19" fill="#6b6b6b" font-weight="400">Match pairs of numbers to create</text>
+    <text x="0" y="186" font-family="Georgia, serif" font-size="19" fill="#6b6b6b" font-weight="400">sums and products</text>
+  </g>
+
+  <!-- Small "The Sunday Times" attribution -->
+  <text x="80" y="580" font-family="Times New Roman, Georgia, serif" font-size="16" fill="#8b7355" font-style="italic">From The Sunday Times</text>
+</svg>

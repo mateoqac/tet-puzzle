@@ -1,0 +1,17 @@
+.puzzle-grid {
+  display: grid;
+  margin: 0 auto;
+  max-width: fit-content;
+  border: 1px solid #000;
+  background: #fff;
+}
+
+/* Remove right border on last column */
+.puzzle-grid > *:nth-child(4n) {
+  border-right: none;
+}
+
+/* Remove bottom border on last row */
+.puzzle-grid > *:nth-last-child(-n+4) {
+  border-bottom: none;
+}
