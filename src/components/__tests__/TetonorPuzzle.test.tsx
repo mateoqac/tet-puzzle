@@ -30,9 +30,9 @@ describe('TetonorPuzzle - Integration Tests', () => {
     it('should render difficulty selector with all levels', () => {
       render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
 
-      expect(screen.getByRole('button', { name: /beginner/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /intermediate/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /advanced/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /easy/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /moderate/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /difficult/i })).toBeInTheDocument();
     });
 
     it('should render puzzle grid', () => {
@@ -67,7 +67,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
     it('should highlight Beginner by default', () => {
       render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
 
-      const beginnerBtn = screen.getByRole('button', { name: /beginner/i });
+      const beginnerBtn = screen.getByRole('button', { name: /easy/i });
       expect(beginnerBtn).toHaveClass('active');
     });
 
@@ -76,7 +76,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
 
       render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
 
-      const intermediateBtn = screen.getByRole('button', { name: /intermediate/i });
+      const intermediateBtn = screen.getByRole('button', { name: /moderate/i });
       await user.click(intermediateBtn);
 
       expect(intermediateBtn).toHaveClass('active');
@@ -92,7 +92,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
 
       render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
 
-      const advancedBtn = screen.getByRole('button', { name: /advanced/i });
+      const advancedBtn = screen.getByRole('button', { name: /difficult/i });
       await user.click(advancedBtn);
 
       expect(advancedBtn).toHaveClass('active');
@@ -108,7 +108,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
       await user.type(inputs[0], '3');
 
       // Change difficulty
-      const intermediateBtn = screen.getByRole('button', { name: /intermediate/i });
+      const intermediateBtn = screen.getByRole('button', { name: /moderate/i });
       await user.click(intermediateBtn);
 
       // Validation summary should not be visible
@@ -543,8 +543,8 @@ describe('TetonorPuzzle - Integration Tests', () => {
 
       render(<TetonorPuzzle initialPuzzle={simplePuzzle} />);
 
-      // 1. Start with beginner difficulty
-      expect(screen.getByRole('button', { name: /beginner/i })).toHaveClass('active');
+      // 1. Start with easy difficulty
+      expect(screen.getByRole('button', { name: /easy/i })).toHaveClass('active');
 
       // 2. Fill in cells
       const inputs = screen.getAllByRole('spinbutton');
@@ -577,7 +577,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
       expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 
       // 7. Can switch difficulty
-      const intermediateBtn = screen.getByRole('button', { name: /intermediate/i });
+      const intermediateBtn = screen.getByRole('button', { name: /moderate/i });
       await user.click(intermediateBtn);
       expect(intermediateBtn).toHaveClass('active');
     });
@@ -589,9 +589,9 @@ describe('TetonorPuzzle - Integration Tests', () => {
 
       render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
 
-      const beginnerBtn = screen.getByRole('button', { name: /beginner/i });
-      const intermediateBtn = screen.getByRole('button', { name: /intermediate/i });
-      const advancedBtn = screen.getByRole('button', { name: /advanced/i });
+      const beginnerBtn = screen.getByRole('button', { name: /easy/i });
+      const intermediateBtn = screen.getByRole('button', { name: /moderate/i });
+      const advancedBtn = screen.getByRole('button', { name: /difficult/i });
 
       await user.click(intermediateBtn);
       await user.click(advancedBtn);

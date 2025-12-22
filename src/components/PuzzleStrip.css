@@ -1,16 +1,14 @@
 .puzzle-strip {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: repeat(16, 36px);
+  width: fit-content;
   margin: 1.5rem auto 0;
-  max-width: fit-content;
   border: 1px solid #000;
   background: #fff;
 }
 
 .strip-number {
-  min-width: 36px;
-  min-height: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,14 +20,11 @@
   font-family: 'Times New Roman', Times, Georgia, serif;
 }
 
-.strip-number:last-child {
+.strip-number:nth-child(16n) {
   border-right: none;
 }
 
 .strip-number.blank-input {
-  width: 36px;
-  min-width: 36px;
-  max-width: 36px;
   background: #f0f0f0;
   border: none;
   border-right: 1px solid #000;
@@ -44,10 +39,6 @@
 
 .strip-number.blank-input:focus {
   background: #e8e8e8;
-}
-
-.strip-number.blank-input:last-child {
-  border-right: none;
 }
 
 .strip-number.blank-input.crossed {
@@ -82,10 +73,46 @@
   background: #ffcccc;
 }
 
-@media (max-width: 480px) {
+/* Breakpoint para pantallas < 630px - partir en 2 filas de 8 */
+@media (max-width: 630px) {
+  .puzzle-strip {
+    grid-template-columns: repeat(8, 32px);
+  }
+
   .strip-number {
-    min-width: 32px;
-    min-height: 32px;
+    height: 32px;
     font-size: 0.9rem;
+  }
+
+  .strip-number:nth-child(8n) {
+    border-right: none;
+  }
+
+  .strip-number:nth-child(n+9) {
+    border-top: 1px solid #000;
+  }
+}
+
+/* Breakpoint para pantallas pequeñas */
+@media (max-width: 480px) {
+  .puzzle-strip {
+    grid-template-columns: repeat(8, 27px);
+  }
+
+  .strip-number {
+    height: 27px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Breakpoint para pantallas muy pequeñas */
+@media (max-width: 380px) {
+  .puzzle-strip {
+    grid-template-columns: repeat(8, 22px);
+  }
+
+  .strip-number {
+    height: 22px;
+    font-size: 0.65rem;
   }
 }

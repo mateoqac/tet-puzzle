@@ -232,7 +232,7 @@ describe('puzzleGenerator', () => {
   });
 
   describe('generateBeginnerPuzzle', () => {
-    it('should generate a valid beginner puzzle', () => {
+    it('should generate a valid easy puzzle', () => {
       const puzzle = generateBeginnerPuzzle();
 
       expect(puzzle.grid).toHaveLength(16); // 4x4
@@ -308,7 +308,7 @@ describe('puzzleGenerator', () => {
   });
 
   describe('generateIntermediatePuzzle', () => {
-    it('should generate a valid intermediate puzzle', () => {
+    it('should generate a valid moderate puzzle', () => {
       const puzzle = generateIntermediatePuzzle();
 
       expect(puzzle.grid).toHaveLength(16); // 4x4
@@ -372,7 +372,7 @@ describe('puzzleGenerator', () => {
   });
 
   describe('generateAdvancedPuzzle', () => {
-    it('should generate a valid advanced puzzle', () => {
+    it('should generate a valid difficult puzzle', () => {
       const puzzle = generateAdvancedPuzzle();
 
       expect(puzzle.grid).toHaveLength(16); // 4x4

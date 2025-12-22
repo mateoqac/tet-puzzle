@@ -480,6 +480,51 @@ describe('GridCellComponent', () => {
     });
   });
 
+  describe('responsive design', () => {
+    it('should have grid-cell class for responsive styling', () => {
+      const { container } = render(
+        <GridCellComponent
+          cell={mockCell}
+          isSelected={false}
+          validation={null}
+          {...mockHandlers}
+        />
+      );
+
+      const gridCell = container.querySelector('.grid-cell');
+      expect(gridCell).toBeInTheDocument();
+      expect(gridCell).toHaveClass('grid-cell');
+    });
+
+    it('should have cell-target class for responsive target area', () => {
+      const { container } = render(
+        <GridCellComponent
+          cell={mockCell}
+          isSelected={false}
+          validation={null}
+          {...mockHandlers}
+        />
+      );
+
+      const cellTarget = container.querySelector('.cell-target');
+      expect(cellTarget).toBeInTheDocument();
+    });
+
+    it('should have cell-inputs class for responsive inputs area', () => {
+      const { container } = render(
+        <GridCellComponent
+          cell={mockCell}
+          isSelected={false}
+          validation={null}
+          {...mockHandlers}
+        />
+      );
+
+      const cellInputs = container.querySelector('.cell-inputs');
+      expect(cellInputs).toBeInTheDocument();
+    });
+  });
+
   describe('accessibility', () => {
     it('should have proper ARIA role', () => {
       render(

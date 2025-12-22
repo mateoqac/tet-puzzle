@@ -12,7 +12,7 @@ import PuzzleStrip from './PuzzleStrip';
 import SuccessModal from './SuccessModal';
 import './TetonorPuzzle.css';
 
-type Difficulty = 'beginner' | 'intermediate' | 'advanced';
+type Difficulty = 'easy' | 'moderate' | 'difficult';
 
 interface TetonorPuzzleProps {
   initialPuzzle: PuzzleState;
@@ -20,7 +20,7 @@ interface TetonorPuzzleProps {
 
 export default function TetonorPuzzle({ initialPuzzle }: TetonorPuzzleProps) {
   const [puzzle, setPuzzle] = useState<PuzzleState>(initialPuzzle);
-  const [difficulty, setDifficulty] = useState<Difficulty>('beginner');
+  const [difficulty, setDifficulty] = useState<Difficulty>('easy');
   const [selectedCell, setSelectedCell] = useState<string | null>(null);
   const [showValidation, setShowValidation] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -31,13 +31,13 @@ export default function TetonorPuzzle({ initialPuzzle }: TetonorPuzzleProps) {
     let newPuzzle: PuzzleState;
 
     switch (newDifficulty) {
-      case 'beginner':
+      case 'easy':
         newPuzzle = generateBeginnerPuzzle();
         break;
-      case 'intermediate':
+      case 'moderate':
         newPuzzle = generateIntermediatePuzzle();
         break;
-      case 'advanced':
+      case 'difficult':
         newPuzzle = generateAdvancedPuzzle();
         break;
     }
@@ -203,22 +203,22 @@ export default function TetonorPuzzle({ initialPuzzle }: TetonorPuzzleProps) {
 
       <div class="difficulty-selector">
         <button
-          class={`difficulty-btn ${difficulty === 'beginner' ? 'active' : ''}`}
-          onClick={() => generateNewPuzzle('beginner')}
+          class={`difficulty-btn ${difficulty === 'easy' ? 'active' : ''}`}
+          onClick={() => generateNewPuzzle('easy')}
         >
-          Beginner
+          Easy
         </button>
         <button
-          class={`difficulty-btn ${difficulty === 'intermediate' ? 'active' : ''}`}
-          onClick={() => generateNewPuzzle('intermediate')}
+          class={`difficulty-btn ${difficulty === 'moderate' ? 'active' : ''}`}
+          onClick={() => generateNewPuzzle('moderate')}
         >
-          Intermediate
+          Moderate
         </button>
         <button
-          class={`difficulty-btn ${difficulty === 'advanced' ? 'active' : ''}`}
-          onClick={() => generateNewPuzzle('advanced')}
+          class={`difficulty-btn ${difficulty === 'difficult' ? 'active' : ''}`}
+          onClick={() => generateNewPuzzle('difficult')}
         >
-          Advanced
+          Difficult
         </button>
       </div>
 

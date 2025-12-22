@@ -1,5 +1,5 @@
 .grid-cell {
-  width: 120px;
+  width: clamp(70px, 20vw, 120px);
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -45,12 +45,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60px;
+  height: clamp(45px, 12vw, 60px);
   border-bottom: 1px dashed #000;
 }
 
 .target-number {
-  font-size: 1.75rem;
+  font-size: clamp(1.2rem, 4vw, 1.75rem);
   font-weight: 400;
   color: #000;
   font-family: 'Times New Roman', Times, Georgia, serif;
@@ -60,7 +60,7 @@
   display: flex;
   align-items: stretch;
   justify-content: center;
-  height: 44px;
+  height: clamp(36px, 10vw, 44px);
   position: relative;
 }
 
@@ -70,7 +70,7 @@
   border: none;
   background: transparent;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: clamp(0.75rem, 2.5vw, 0.9rem);
   font-weight: 400;
   color: #000;
   font-family: 'Times New Roman', Times, Georgia, serif;
@@ -101,7 +101,7 @@
   border-right: 1px solid #000;
   background: transparent;
   text-align: center;
-  font-size: 1rem;
+  font-size: clamp(0.85rem, 3vw, 1rem);
   font-weight: 600;
   color: #000;
   font-family: 'Times New Roman', Times, Georgia, serif;
@@ -193,28 +193,71 @@
   font-weight: 700;
 }
 
-@media (max-width: 480px) {
+/* Breakpoint para pantallas medianas */
+@media (max-width: 600px) {
   .grid-cell {
-    width: 100px;
+    width: clamp(65px, 22vw, 100px);
   }
 
   .cell-target {
-    height: 48px;
+    height: clamp(40px, 11vw, 50px);
   }
 
   .target-number {
-    font-size: 1.4rem;
+    font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+  }
+}
+
+/* Breakpoint para pantallas pequeñas */
+@media (max-width: 480px) {
+  .grid-cell {
+    width: clamp(60px, 23vw, 85px);
+  }
+
+  .cell-target {
+    height: clamp(38px, 10vw, 45px);
+  }
+
+  .target-number {
+    font-size: clamp(1rem, 3.2vw, 1.25rem);
   }
 
   .cell-inputs {
-    height: 44px;
+    height: clamp(32px, 9vw, 40px);
   }
 
   .cell-input {
-    font-size: 1rem;
+    font-size: clamp(0.7rem, 2.2vw, 0.85rem);
   }
 
   .cell-operation {
-    font-size: 1.1rem;
+    font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+  }
+}
+
+/* Breakpoint para pantallas muy pequeñas */
+@media (max-width: 380px) {
+  .grid-cell {
+    width: clamp(55px, 24vw, 70px);
+  }
+
+  .cell-target {
+    height: 36px;
+  }
+
+  .target-number {
+    font-size: 1rem;
+  }
+
+  .cell-inputs {
+    height: 32px;
+  }
+
+  .cell-input {
+    font-size: 0.7rem;
+  }
+
+  .cell-operation {
+    font-size: 0.8rem;
   }
 }

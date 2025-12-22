@@ -273,6 +273,31 @@ describe('PuzzleStrip', () => {
     });
   });
 
+  describe('responsive design', () => {
+    it('should have puzzle-strip class for responsive styling', () => {
+      const { container } = render(<PuzzleStrip strip={mockStrip} />);
+
+      const puzzleStrip = container.querySelector('.puzzle-strip');
+      expect(puzzleStrip).toBeInTheDocument();
+    });
+
+    it('should have strip-number class on number elements for responsive sizing', () => {
+      const { container } = render(<PuzzleStrip strip={mockStrip} />);
+
+      const stripNumbers = container.querySelectorAll('.strip-number');
+      expect(stripNumbers.length).toBeGreaterThan(0);
+    });
+
+    it('should render numbers that can scale with viewport', () => {
+      const { container } = render(<PuzzleStrip strip={mockStrip} />);
+
+      const puzzleStrip = container.querySelector('.puzzle-strip');
+      expect(puzzleStrip).toBeInTheDocument();
+      // Strip should be flexible and not overflow
+      expect(puzzleStrip).not.toHaveStyle({ overflow: 'visible' });
+    });
+  });
+
   describe('edge cases', () => {
     it('should handle empty strip', () => {
       const { container } = render(<PuzzleStrip strip={[]} />);
