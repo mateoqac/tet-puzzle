@@ -1,8 +1,8 @@
-# Tetonor Puzzle - Testing Summary
+# Tet Puzzle - Testing Summary
 
 ## Overview
 
-A comprehensive test suite has been created for the Tetonor Puzzle application using **Vitest** and **@testing-library/preact**. The tests follow modern best practices and cover all critical functionality.
+A comprehensive test suite has been created for the Tet Puzzle application using **Vitest** and **@testing-library/preact**. The tests follow modern best practices and cover all critical functionality.
 
 ## Test Statistics
 
@@ -19,7 +19,7 @@ A comprehensive test suite has been created for the Tetonor Puzzle application u
   - SuccessModal.test.tsx: 20+ tests
 
 - **Integration Tests**: ~30 tests
-  - TetonorPuzzle.test.tsx: 30+ tests
+  - TetPuzzle.test.tsx: 30+ tests
 
 ## Files Created
 
@@ -34,7 +34,7 @@ A comprehensive test suite has been created for the Tetonor Puzzle application u
 6. `/src/components/__tests__/PuzzleStrip.test.tsx`
 7. `/src/components/__tests__/PuzzleGrid.test.tsx`
 8. `/src/components/__tests__/SuccessModal.test.tsx`
-9. `/src/components/__tests__/TetonorPuzzle.test.tsx`
+9. `/src/components/__tests__/TetPuzzle.test.tsx`
 
 ### Documentation
 10. `/TEST_README.md` - Comprehensive testing documentation
@@ -129,7 +129,7 @@ A comprehensive test suite has been created for the Tetonor Puzzle application u
 - Accessibility: dialog role, aria-modal, aria-labelledby, aria-describedby
 - State transitions: rapid open/close
 
-### 7. Main App Integration (`TetonorPuzzle.test.tsx`)
+### 7. Main App Integration (`TetPuzzle.test.tsx`)
 
 **Complete Workflows Tested:**
 - Initial rendering: all UI elements present
@@ -229,7 +229,7 @@ When running `npm run test:run`, you should see:
 ✓ src/components/__tests__/PuzzleStrip.test.tsx (30+ tests)
 ✓ src/components/__tests__/PuzzleGrid.test.tsx (25+ tests)
 ✓ src/components/__tests__/SuccessModal.test.tsx (20+ tests)
-✓ src/components/__tests__/TetonorPuzzle.test.tsx (30+ tests)
+✓ src/components/__tests__/TetPuzzle.test.tsx (30+ tests)
 
 Test Files  7 passed (7)
      Tests  260+ passed (260+)
@@ -306,7 +306,7 @@ Potential additions:
 
 ## Conclusion
 
-This comprehensive test suite ensures the Tetonor Puzzle application:
+This comprehensive test suite ensures the Tet Puzzle application:
 - Works correctly across all features
 - Handles edge cases gracefully
 - Maintains accessibility standards

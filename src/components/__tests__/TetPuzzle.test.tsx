@@ -1,11 +1,11 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/preact';
 import userEvent from '@testing-library/user-event';
-import TetonorPuzzle from '../TetonorPuzzle';
+import TetPuzzle from '../TetPuzzle';
 import { createFixedPuzzle } from '../../lib/puzzleGenerator';
 import type { PuzzleState } from '../../types/puzzle';
 
-describe('TetonorPuzzle - Integration Tests', () => {
+describe('TetPuzzle - Integration Tests', () => {
   const initialPuzzle = createFixedPuzzle();
 
   beforeEach(() => {
@@ -14,13 +14,13 @@ describe('TetonorPuzzle - Integration Tests', () => {
 
   describe('initial rendering', () => {
     it('should render puzzle title', () => {
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
-      expect(screen.getByText('Tetonor Puzzle')).toBeInTheDocument();
+      expect(screen.getByText('Tet Puzzle')).toBeInTheDocument();
     });
 
     it('should render instructions', () => {
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       expect(
         screen.getByText(/use each pair.*exactly twice.*addition.*multiplication/i)
@@ -28,7 +28,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
     });
 
     it('should render difficulty selector with all levels', () => {
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       expect(screen.getByRole('button', { name: /easy/i })).toBeInTheDocument();
       expect(screen.getByRole('button', { name: /moderate/i })).toBeInTheDocument();
@@ -36,27 +36,27 @@ describe('TetonorPuzzle - Integration Tests', () => {
     });
 
     it('should render puzzle grid', () => {
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       expect(screen.getByRole('grid')).toBeInTheDocument();
     });
 
     it('should render puzzle strip', () => {
-      const { container } = render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      const { container } = render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       const strip = container.querySelector('.puzzle-strip');
       expect(strip).toBeInTheDocument();
     });
 
     it('should render control buttons', () => {
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       expect(screen.getByRole('button', { name: /check solution/i })).toBeInTheDocument();
       expect(screen.getByRole('button', { name: /reset/i })).toBeInTheDocument();
     });
 
     it('should have Check Solution button disabled initially', () => {
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       const checkButton = screen.getByRole('button', { name: /check solution/i });
       expect(checkButton).toBeDisabled();
@@ -65,7 +65,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
 
   describe('difficulty selection', () => {
     it('should highlight Beginner by default', () => {
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       const beginnerBtn = screen.getByRole('button', { name: /easy/i });
       expect(beginnerBtn).toHaveClass('active');
@@ -74,7 +74,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
     it('should generate new puzzle when selecting Intermediate', async () => {
       const user = userEvent.setup();
 
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       const intermediateBtn = screen.getByRole('button', { name: /moderate/i });
       await user.click(intermediateBtn);
@@ -90,7 +90,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
     it('should generate new puzzle when selecting Advanced', async () => {
       const user = userEvent.setup();
 
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       const advancedBtn = screen.getByRole('button', { name: /difficult/i });
       await user.click(advancedBtn);
@@ -101,7 +101,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
     it('should reset validation when changing difficulty', async () => {
       const user = userEvent.setup();
 
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       // Fill a cell
       const inputs = screen.getAllByRole('spinbutton');
@@ -120,7 +120,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
     it('should allow entering numbers in cells', async () => {
       const user = userEvent.setup();
 
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       const inputs = screen.getAllByRole('spinbutton');
       const firstInput = inputs[0];
@@ -133,7 +133,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
     it('should allow selecting operation', async () => {
       const user = userEvent.setup();
 
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       const operationButton = screen.getAllByRole('button', {
         name: /operation for target/i,
@@ -147,7 +147,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
     it('should enable Check Solution button when all cells filled', async () => {
       const user = userEvent.setup();
 
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       const checkButton = screen.getByRole('button', { name: /check solution/i });
       expect(checkButton).toBeDisabled();
@@ -171,7 +171,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
     it('should clear validation when cell is modified', async () => {
       const user = userEvent.setup();
 
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       // Fill all cells with incorrect values
       const inputs = screen.getAllByRole('spinbutton');
@@ -208,7 +208,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
     it('should clear all cell inputs when reset is clicked', async () => {
       const user = userEvent.setup();
 
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       // Fill some cells
       const inputs = screen.getAllByRole('spinbutton');
@@ -227,7 +227,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
     it('should clear validation when reset is clicked', async () => {
       const user = userEvent.setup();
 
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       // Fill all cells
       const inputs = screen.getAllByRole('spinbutton');
@@ -261,7 +261,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
     it('should clear selected cell when reset is clicked', async () => {
       const user = userEvent.setup();
 
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       // Select a cell
       const gridCells = screen.getAllByRole('gridcell');
@@ -284,7 +284,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
     it('should show error message for incorrect solution', async () => {
       const user = userEvent.setup();
 
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       // Fill all cells with wrong values
       const inputs = screen.getAllByRole('spinbutton');
@@ -339,7 +339,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
         dimensions: { rows: 1, cols: 2 },
       };
 
-      render(<TetonorPuzzle initialPuzzle={simplePuzzle} />);
+      render(<TetPuzzle initialPuzzle={simplePuzzle} />);
 
       // Fill with correct values
       const inputs = screen.getAllByRole('spinbutton');
@@ -397,7 +397,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
         dimensions: { rows: 1, cols: 2 },
       };
 
-      render(<TetonorPuzzle initialPuzzle={simplePuzzle} />);
+      render(<TetPuzzle initialPuzzle={simplePuzzle} />);
 
       const inputs = screen.getAllByRole('spinbutton');
       await user.type(inputs[0], '3');
@@ -454,7 +454,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
         dimensions: { rows: 1, cols: 2 },
       };
 
-      render(<TetonorPuzzle initialPuzzle={simplePuzzle} />);
+      render(<TetPuzzle initialPuzzle={simplePuzzle} />);
 
       // Solve puzzle
       const inputs = screen.getAllByRole('spinbutton');
@@ -496,7 +496,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
     it('should support arrow key navigation between cells', async () => {
       const user = userEvent.setup();
 
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       const gridCells = screen.getAllByRole('gridcell');
 
@@ -541,7 +541,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
         dimensions: { rows: 1, cols: 2 },
       };
 
-      render(<TetonorPuzzle initialPuzzle={simplePuzzle} />);
+      render(<TetPuzzle initialPuzzle={simplePuzzle} />);
 
       // 1. Start with easy difficulty
       expect(screen.getByRole('button', { name: /easy/i })).toHaveClass('active');
@@ -587,7 +587,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
     it('should handle rapid difficulty changes', async () => {
       const user = userEvent.setup();
 
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       const beginnerBtn = screen.getByRole('button', { name: /easy/i });
       const intermediateBtn = screen.getByRole('button', { name: /moderate/i });
@@ -604,7 +604,7 @@ describe('TetonorPuzzle - Integration Tests', () => {
     it('should handle partial puzzle completion', async () => {
       const user = userEvent.setup();
 
-      render(<TetonorPuzzle initialPuzzle={initialPuzzle} />);
+      render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       // Fill only some cells
       const inputs = screen.getAllByRole('spinbutton');

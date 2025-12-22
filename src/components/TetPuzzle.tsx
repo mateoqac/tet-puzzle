@@ -10,15 +10,15 @@ import {
 import PuzzleGrid from './PuzzleGrid';
 import PuzzleStrip from './PuzzleStrip';
 import SuccessModal from './SuccessModal';
-import './TetonorPuzzle.css';
+import './TetPuzzle.css';
 
 type Difficulty = 'easy' | 'moderate' | 'difficult';
 
-interface TetonorPuzzleProps {
+interface TetPuzzleProps {
   initialPuzzle: PuzzleState;
 }
 
-export default function TetonorPuzzle({ initialPuzzle }: TetonorPuzzleProps) {
+export default function TetPuzzle({ initialPuzzle }: TetPuzzleProps) {
   const [puzzle, setPuzzle] = useState<PuzzleState>(initialPuzzle);
   const [difficulty, setDifficulty] = useState<Difficulty>('easy');
   const [selectedCell, setSelectedCell] = useState<string | null>(null);
@@ -192,9 +192,9 @@ export default function TetonorPuzzle({ initialPuzzle }: TetonorPuzzleProps) {
   );
 
   return (
-    <div class="tetonor-puzzle">
+    <div class="tet-puzzle">
       <div class="puzzle-header">
-        <h1>Tetonor Puzzle</h1>
+        <h1>Tet Puzzle</h1>
         <p class="puzzle-instructions">
           Use each pair of numbers from the strip below exactly twice: once for
           addition and once for multiplication.

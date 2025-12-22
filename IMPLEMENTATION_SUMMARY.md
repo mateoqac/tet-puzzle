@@ -1,4 +1,4 @@
-# Tetonor Puzzle - Implementation Summary
+# Tet Puzzle - Implementation Summary
 
 ## Project Completion Status
 
@@ -16,7 +16,7 @@ All components have been successfully implemented and the project builds without
 
 **Project Location:**
 ```
-/Users/mateqac/Work/tetonor-puzzle/
+/Users/mateqac/Work/tet-puzzle/
 ```
 
 ### 2. TypeScript Type System
@@ -81,7 +81,7 @@ Comprehensive type definitions including:
 
 **Components Created:**
 
-#### TetonorPuzzle.tsx
+#### TetPuzzle.tsx
 - Main container component
 - State management for puzzle, validation, selection
 - User action handlers (check, reset)
@@ -107,7 +107,7 @@ Comprehensive type definitions including:
 ### 6. Responsive Styling
 
 **CSS Files Created:**
-- `TetonorPuzzle.css`: Main layout and controls
+- `TetPuzzle.css`: Main layout and controls
 - `PuzzleGrid.css`: Grid layout styles
 - `GridCellComponent.css`: Cell styling with states
 - `PuzzleStrip.css`: Strip display styles
@@ -319,7 +319,7 @@ Integration (pages/)
 
 1. **Test the Game**
    ```bash
-   cd /Users/mateqac/Work/tetonor-puzzle
+   cd /Users/mateqac/Work/tet-puzzle
    npm run dev
    ```
 
@@ -340,7 +340,7 @@ Integration (pages/)
 
 ## Conclusion
 
-The Tetonor Puzzle game is fully functional with:
+The Tet Puzzle game is fully functional with:
 - Robust type-safe architecture
 - Clean, maintainable code
 - Responsive, accessible UI

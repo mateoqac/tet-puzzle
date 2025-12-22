@@ -48,8 +48,8 @@
 
   <!-- Left side: Branding and tagline -->
   <g transform="translate(80, 220)">
-    <!-- "Tetonor" title -->
-    <text x="0" y="0" font-family="Times New Roman, Georgia, serif" font-size="92" fill="#2c2c2c" font-weight="700" letter-spacing="-2">TETONOR</text>
+    <!-- "Tet Puzzle" title -->
+    <text x="0" y="0" font-family="Times New Roman, Georgia, serif" font-size="92" fill="#2c2c2c" font-weight="700" letter-spacing="-2">TET PUZZLE</text>
 
     <!-- Decorative line -->
     <line x1="0" y1="25" x2="420" y2="25" stroke="#8b7355" stroke-width="3"/>
@@ -63,6 +63,6 @@
     <text x="0" y="186" font-family="Georgia, serif" font-size="19" fill="#6b6b6b" font-weight="400">sums and products</text>
   </g>
 
-  <!-- Small "The Sunday Times" attribution -->
-  <text x="80" y="580" font-family="Times New Roman, Georgia, serif" font-size="16" fill="#8b7355" font-style="italic">From The Sunday Times</text>
+  <!-- Small attribution -->
+  <text x="80" y="580" font-family="Times New Roman, Georgia, serif" font-size="16" fill="#8b7355" font-style="italic">A Number Logic Game</text>
 </svg>

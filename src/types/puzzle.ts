@@ -1,5 +1,5 @@
 /**
- * Represents an operation type in the Tetonor puzzle
+ * Represents an operation type in the Tet puzzle
  */
 export type Operation = 'add' | 'multiply';
 

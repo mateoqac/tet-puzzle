@@ -1,6 +1,6 @@
-# Example Tetonor Puzzle Walkthrough
+# Example Tet Puzzle Walkthrough
 
-This document shows a concrete example of how a Tetonor puzzle is generated and solved.
+This document shows a concrete example of how a Tet puzzle is generated and solved.
 
 ## Example Puzzle Generation
 
@@ -86,7 +86,7 @@ const strip = [
 
 ```
 ┌─────────────────────────────────────────────┐
-│          TETONOR PUZZLE                     │
+│          TET PUZZLE                         │
 └─────────────────────────────────────────────┘
 
 Grid (what player sees):
@@ -258,7 +258,7 @@ const validation: PuzzleValidation = {
 ### React Component Tree
 
 ```
-<TetonorPuzzle initialPuzzle={puzzleState}>
+<TetPuzzle initialPuzzle={puzzleState}>
   │
   ├─ <PuzzleGrid>
   │   ├─ <GridCellComponent cell={grid[0]} />  // 28(×)
@@ -314,4 +314,4 @@ This example demonstrates:
 5. The underlying data structures
 6. How TypeScript types ensure correctness
 
-The complete flow from generation → display → solving → validation is type-safe and follows Tetonor puzzle rules exactly.
+The complete flow from generation → display → solving → validation is type-safe and follows Tet puzzle rules exactly.

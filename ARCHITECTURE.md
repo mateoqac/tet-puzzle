@@ -1,8 +1,8 @@
-# Tetonor Puzzle - Technical Architecture
+# Tet Puzzle - Technical Architecture
 
 ## Overview
 
-This document provides a detailed technical breakdown of the Tetonor puzzle game implementation, focusing on architecture decisions, type safety patterns, and implementation strategies.
+This document provides a detailed technical breakdown of the Tet puzzle game implementation, focusing on architecture decisions, type safety patterns, and implementation strategies.
 
 ## Technology Stack
 
@@ -16,7 +16,7 @@ This document provides a detailed technical breakdown of the Tetonor puzzle game
 ```
 src/
 ├── components/              # Interactive UI components (Preact)
-│   ├── TetonorPuzzle.tsx    # Root component, state management
+│   ├── TetPuzzle.tsx        # Root component, state management
 │   ├── PuzzleGrid.tsx       # Grid layout and cell orchestration
 │   ├── GridCellComponent.tsx # Individual cell with inputs
 │   ├── PuzzleStrip.tsx      # Number pair display
@@ -216,7 +216,7 @@ function pairsMatch(
 ```
 User Input
     ↓
-Event Handler (TetonorPuzzle)
+Event Handler (TetPuzzle)
     ↓
 State Update (setPuzzle)
     ↓
@@ -228,13 +228,13 @@ Component Re-render
 ### Component Hierarchy
 
 ```
-TetonorPuzzle (stateful container)
+TetPuzzle (stateful container)
     ├─> PuzzleGrid (layout coordinator)
     │    └─> GridCellComponent[] (individual cells)
     └─> PuzzleStrip (pair display)
 ```
 
-### TetonorPuzzle Component
+### TetPuzzle Component
 
 **Responsibilities:**
 - Owns puzzle state
@@ -348,7 +348,7 @@ While not currently implemented, consider adding:
 ### Astro Islands Architecture
 
 - **Server-side Generation**: Puzzle generated at build time
-- **Partial Hydration**: Only TetonorPuzzle component is interactive
+- **Partial Hydration**: Only TetPuzzle component is interactive
 - **Client Directive**: `client:load` for immediate interactivity
 - **Minimal JS**: Only Preact and component code shipped
 
@@ -379,7 +379,7 @@ While not currently implemented, consider adding:
    ↓
 3. Calls onInput(cellId, 4, playerSecond)
    ↓
-4. TetonorPuzzle.handleCellInput updates state
+4. TetPuzzle.handleCellInput updates state
    ↓
 5. setPuzzle creates new state object
    ↓
@@ -500,7 +500,7 @@ function saveGame(state: PuzzleState): void {
     progress: extractProgress(state),
     timestamp: Date.now(),
   };
-  localStorage.setItem('tetonor-save', JSON.stringify(serialized));
+  localStorage.setItem('tet-puzzle-save', JSON.stringify(serialized));
 }
 ```
 

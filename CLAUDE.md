@@ -30,7 +30,7 @@ pnpm vitest src/lib/__tests__/puzzleGenerator.test.ts
 
 ### Core Puzzle Logic (`src/lib/`)
 
-- **puzzleGenerator.ts**: Creates valid Tetonor puzzles. Each number pair must be used exactly twice: once for addition and once for multiplication. Supports `PRESET_CONFIGS` for easy/moderate/difficult levels.
+- **puzzleGenerator.ts**: Creates valid Tet puzzles. Each number pair must be used exactly twice: once for addition and once for multiplication. Supports `PRESET_CONFIGS` for easy/moderate/difficult levels.
 - **puzzleValidator.ts**: Validates player solutions and tracks pair usage.
 
 ### Type System (`src/types/puzzle.ts`)
@@ -40,7 +40,7 @@ Central type definitions including `PuzzleState`, `GridCell`, `NumberPair`, and 
 ### Components (`src/components/`)
 
 Preact components with unidirectional state flow:
-- **TetonorPuzzle.tsx**: Main container, owns all puzzle state
+- **TetPuzzle.tsx**: Main container, owns all puzzle state
 - **PuzzleGrid.tsx**: Grid layout
 - **GridCellComponent.tsx**: Cell with inputs for player answers
 - **PuzzleStrip.tsx**: Displays number pairs

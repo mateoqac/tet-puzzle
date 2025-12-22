@@ -1,4 +1,4 @@
-# Tetonor Puzzle Tests - Quick Start Guide
+# Tet Puzzle Tests - Quick Start Guide
 
 ## Installation
 
@@ -52,7 +52,7 @@ src/
 │   ├── PuzzleStrip.test.tsx        (30+ component tests)
 │   ├── PuzzleGrid.test.tsx         (25+ component tests)
 │   ├── SuccessModal.test.tsx       (20+ component tests)
-│   └── TetonorPuzzle.test.tsx      (30+ integration tests)
+│   └── TetPuzzle.test.tsx           (30+ integration tests)
 └── test/
     └── setup.ts                     (global test config)
 ```

@@ -1,10 +1,10 @@
-# Tetonor Puzzle - Quick Start Guide
+# Tet Puzzle - Quick Start Guide
 
 ## Get Started in 3 Steps
 
 ### 1. Navigate to the Project
 ```bash
-cd /Users/mateqac/Work/tetonor-puzzle
+cd /Users/mateqac/Work/tet-puzzle
 ```
 
 ### 2. Start Development Server
@@ -16,7 +16,7 @@ The game will be available at: `http://localhost:4321`
 
 ### 3. Play the Game!
 
-Open your browser and start solving Tetonor puzzles.
+Open your browser and start solving Tet puzzles.
 
 ## How to Play
 
@@ -45,7 +45,7 @@ If the strip contains the pair `(4, 6)`:
 ```
 src/
 ├── components/          # UI components
-│   ├── TetonorPuzzle.tsx       # Main game component
+│   ├── TetPuzzle.tsx           # Main game component
 │   ├── PuzzleGrid.tsx          # Grid layout
 │   ├── GridCellComponent.tsx   # Individual cells
 │   └── PuzzleStrip.tsx         # Number pairs display
@@ -111,7 +111,7 @@ Install the Astro VS Code extension for inline type checking.
 
 - Full documentation: `README.md`
 - Technical details: `ARCHITECTURE.md`
-- Game rules: See "Tetonor Puzzle Rules" section in README
+- Game rules: See "Tet Puzzle Rules" section in README
 
 ## Common Issues
 

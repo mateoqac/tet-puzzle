@@ -176,7 +176,7 @@ function applyBlankPairs(
 }
 
 /**
- * Main function to generate a complete Tetonor puzzle
+ * Main function to generate a complete Tet puzzle
  */
 export function generatePuzzle(config: PuzzleConfig): PuzzleState {
   const { rows, cols, minValue, maxValue, blankPairs, difficulty } = config;

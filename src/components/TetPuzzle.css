@@ -1,4 +1,4 @@
-.tetonor-puzzle {
+.tet-puzzle {
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
@@ -164,7 +164,7 @@
 }
 
 @media (max-width: 768px) {
-  .tetonor-puzzle {
+  .tet-puzzle {
     padding: 1rem;
   }
 

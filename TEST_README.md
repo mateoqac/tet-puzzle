@@ -1,6 +1,6 @@
-# Tetonor Puzzle - Test Suite
+# Tet Puzzle - Test Suite
 
-This document describes the comprehensive test suite for the Tetonor Puzzle application.
+This document describes the comprehensive test suite for the Tet Puzzle application.
 
 ## Test Structure
 
@@ -20,7 +20,7 @@ src/
 │   │   ├── PuzzleStrip.test.tsx       # Component tests for number strip
 │   │   ├── PuzzleGrid.test.tsx        # Component tests for grid layout
 │   │   ├── SuccessModal.test.tsx      # Component tests for success modal
-│   │   └── TetonorPuzzle.test.tsx     # Integration tests for main app
+│   │   └── TetPuzzle.test.tsx          # Integration tests for main app
 │   └── ...
 └── test/
     └── setup.ts                        # Test setup and global config
@@ -105,7 +105,7 @@ The test suite includes:
 
 ### Integration Tests (components/)
 
-**TetonorPuzzle.test.tsx** - 30+ tests covering:
+**TetPuzzle.test.tsx** - 30+ tests covering:
 - Full game flow: difficulty selection → filling cells → validation → success
 - Difficulty switching: puzzle regeneration, state reset
 - Cell interactions: input, operations, validation clearing

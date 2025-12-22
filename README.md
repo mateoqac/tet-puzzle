@@ -1,6 +1,6 @@
-# Tetonor Puzzle Game
+# Tet Puzzle Game
 
-A TypeScript-powered Tetonor puzzle game built with Astro and Preact. Tetonor is a number logic puzzle where players must use pairs of numbers to create both sums and products.
+A TypeScript-powered Tet puzzle game built with Astro and Preact. Tet puzzle is a number logic game where players must use pairs of numbers to create both sums and products.
 
 ## Game Rules
 
@@ -14,10 +14,10 @@ A TypeScript-powered Tetonor puzzle game built with Astro and Preact. Tetonor is
 ## Project Structure
 
 ```
-tetonor-puzzle/
+tet-puzzle/
 ├── src/
 │   ├── components/          # Preact components
-│   │   ├── TetonorPuzzle.tsx       # Main puzzle container
+│   │   ├── TetPuzzle.tsx           # Main puzzle container
 │   │   ├── PuzzleGrid.tsx          # Grid layout component
 │   │   ├── GridCellComponent.tsx   # Individual cell component
 │   │   ├── PuzzleStrip.tsx         # Number strip component
@@ -51,7 +51,7 @@ The entire puzzle system is built on a robust TypeScript foundation:
 
 #### Puzzle Generation (`src/lib/puzzleGenerator.ts`)
 
-The `generatePuzzle()` function creates valid Tetonor puzzles:
+The `generatePuzzle()` function creates valid Tet puzzles:
 
 1. **Pair Generation**: Creates unique number pairs within specified ranges
 2. **Grid Assignment**: Assigns each pair to exactly two cells (one add, one multiply)
@@ -77,7 +77,7 @@ Comprehensive validation system:
 
 Built with Preact for efficient client-side interactivity:
 
-1. **TetonorPuzzle**: Main container managing state and user actions
+1. **TetPuzzle**: Main container managing state and user actions
    - Handles puzzle state
    - Coordinates validation
    - Manages user interactions (check, reset)
@@ -99,7 +99,7 @@ Built with Preact for efficient client-side interactivity:
 ### State Management
 
 State flows unidirectionally:
-- Main state in `TetonorPuzzle` component
+- Main state in `TetPuzzle` component
 - User inputs update via callbacks
 - Validation is computed on-demand
 - No external state management needed (Preact's built-in state is sufficient)
@@ -114,7 +114,7 @@ State flows unidirectionally:
 ### Installation
 
 ```bash
-cd tetonor-puzzle
+cd tet-puzzle
 pnpm install
 ```
 
@@ -278,4 +278,4 @@ Contributions welcome! Please ensure:
 
 ## Acknowledgments
 
-Inspired by the classic Tetonor puzzle game format.
+Inspired by classic number logic puzzles.

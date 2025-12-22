@@ -91,7 +91,7 @@ function findAvailablePair(
 
 /**
  * Validates a single grid cell
- * In Tetonor, any pair from the strip can be used as long as:
+ * In Tet puzzle, any pair from the strip can be used as long as:
  * 1. The math is correct (numbers + operation = target)
  * 2. The pair exists in the strip
  */
