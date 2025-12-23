@@ -1,6 +1,6 @@
 ---
 import Footer from "../components/Footer.astro";
-
+import Analytics from "@vercel/analytics/astro";
 interface Props {
   title: string;
   description: string;
@@ -59,6 +59,7 @@ const canonicalUrl = `${siteUrl}${canonicalPath}`;
   <body>
     <slot />
     {showFooter && <Footer showLegalLinks={showLegalLinks} />}
+    {(<Analytics />)}
   </body>
 </html>
 
