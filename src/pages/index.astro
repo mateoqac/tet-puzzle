@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import TetPuzzle from "../components/TetPuzzle";
 import AdUnit from "../components/AdUnit";
 import { generateBeginnerPuzzle } from "../lib/puzzleGenerator";
-
+import SpeedInsights from "@vercel/speed-insights/astro";
 const puzzle = generateBeginnerPuzzle();
 
 const siteUrl = "https://tetonor.app";
@@ -147,6 +147,7 @@ const structuredData = {
       <AdUnit client:only="preact" slot="4102637707" />
     </aside>
   </div>
+  <SpeedInsights />
 </BaseLayout>
 
 <style>
