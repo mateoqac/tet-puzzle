@@ -2,7 +2,6 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import App from "../components/App";
 import AdUnit from "../components/AdUnit";
-import HomepageSeoContent from "../components/HomepageSeoContent";
 import { generateBeginnerPuzzle } from "../lib/puzzleGenerator";
 import SpeedInsights from "@vercel/speed-insights/astro";
 const puzzle = generateBeginnerPuzzle();
@@ -167,11 +166,14 @@ const structuredData = {
   </Fragment>
 
   <div class="flex justify-center gap-8 max-w-[1400px] mx-auto">
-    <aside class="hidden xl:block shrink-0 w-40 self-start sticky top-8" aria-hidden="true">
+    <aside
+      class="hidden xl:block shrink-0 w-40 self-start sticky top-8"
+      aria-hidden="true"
+    >
       <AdUnit client:only="preact" slot="5475429127" />
     </aside>
 
-    <main id="main-content" role="main" class="flex-initial min-w-0">
+    <main id="main-content" role="main" class="flex-initial min-w-0 w-full">
       <header class="sr-only">
         <h1>Play Tet Puzzle Online Free - Number Logic Game</h1>
         <p>
@@ -192,12 +194,13 @@ const structuredData = {
       </article>
     </main>
 
-    <aside class="hidden xl:block shrink-0 w-40 self-start sticky top-8" aria-hidden="true">
+    <aside
+      class="hidden xl:block shrink-0 w-40 self-start sticky top-8"
+      aria-hidden="true"
+    >
       <AdUnit client:only="preact" slot="4102637707" />
     </aside>
   </div>
-
-  <HomepageSeoContent client:visible />
 
   <SpeedInsights />
 </BaseLayout>

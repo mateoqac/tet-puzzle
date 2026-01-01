@@ -14,8 +14,8 @@ export default function Footer() {
   ];
 
   return (
-    <footer class="mt-12 py-6 px-4 border-t border-gray-200 text-center">
-      <div class="max-w-[800px] mx-auto">
+    <footer class="max-w-[800px] mx-auto mt-12 py-6 px-4 border-t border-gray-200 text-center">
+      <div>
         <nav class="mb-3 flex flex-wrap justify-center gap-x-1 gap-y-2">
           {links.map((link, index) => (
             <>

@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'preact/hooks';
+import { useState, useEffect, useRef, useCallback } from 'preact/hooks';
 import { useTranslation, useI18n, I18nContext } from '../i18n';
 import {
   getAllDailyChallenges,
   type DailyChallengeInfo,
 } from '../lib/dailyChallenge';
 import Footer from './Footer';
+
+const ITEMS_PER_PAGE = 20;
 
 type SortMode = 'id-desc' | 'id-asc' | 'progress';
 
@@ -30,10 +32,17 @@ function ArchiveListInner() {
   const { t } = useTranslation();
   const [challenges, setChallenges] = useState<DailyChallengeInfo[]>([]);
   const [sortMode, setSortMode] = useState<SortMode>('id-desc');
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+  const loaderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setChallenges(getAllDailyChallenges());
   }, []);
+
+  // Reset visible count when sort mode changes
+  useEffect(() => {
+    setVisibleCount(ITEMS_PER_PAGE);
+  }, [sortMode]);
 
   const completedCount = challenges.filter((c) => c.isCompleted).length;
   const totalCount = challenges.length;
@@ -55,6 +64,27 @@ function ArchiveListInner() {
         return 0;
     }
   });
+
+  const visibleChallenges = sortedChallenges.slice(0, visibleCount);
+  const hasMore = visibleCount < sortedChallenges.length;
+
+  // Intersection Observer for infinite scroll
+  useEffect(() => {
+    const loader = loaderRef.current;
+    if (!loader) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setVisibleCount((prev) => prev + ITEMS_PER_PAGE);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(loader);
+    return () => observer.disconnect();
+  }, [hasMore]);
 
   return (
     <div class="max-w-2xl mx-auto">
@@ -104,7 +134,7 @@ function ArchiveListInner() {
 
       {/* Challenge List */}
       <div class="space-y-2">
-        {sortedChallenges.map((challenge) => (
+        {visibleChallenges.map((challenge) => (
           <a
             key={challenge.dateString}
             href={`/daily/${challenge.dateString}`}
@@ -150,6 +180,13 @@ function ArchiveListInner() {
           </a>
         ))}
       </div>
+
+      {/* Loader for infinite scroll */}
+      {hasMore && (
+        <div ref={loaderRef} class="py-8 text-center">
+          <div class="inline-block w-6 h-6 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin" />
+        </div>
+      )}
 
       <Footer />
     </div>

@@ -1,6 +1,6 @@
-import { I18nContext, useI18n, useTranslation } from '../i18n';
+import { useTranslation } from '../i18n';
 
-function SeoContentInner() {
+export default function HomepageSeoContent() {
   const { t } = useTranslation();
 
   return (
@@ -69,15 +69,5 @@ function SeoContentInner() {
         </a>
       </section>
     </div>
-  );
-}
-
-export default function HomepageSeoContent() {
-  const i18n = useI18n();
-
-  return (
-    <I18nContext.Provider value={i18n}>
-      <SeoContentInner />
-    </I18nContext.Provider>
   );
 }

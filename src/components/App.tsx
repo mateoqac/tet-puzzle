@@ -2,6 +2,7 @@ import type { PuzzleState } from '../types/puzzle';
 import { I18nContext, useI18n, useTranslation, type Language } from '../i18n';
 import TetPuzzle from './TetPuzzle';
 import Footer from './Footer';
+import HomepageSeoContent from './HomepageSeoContent';
 
 interface AppProps {
   initialPuzzle: PuzzleState;
@@ -48,6 +49,7 @@ export default function App({ initialPuzzle }: AppProps) {
       <div class="relative">
         <LanguageSelector />
         <TetPuzzle initialPuzzle={initialPuzzle} />
+        <HomepageSeoContent />
         <Footer />
       </div>
     </I18nContext.Provider>
