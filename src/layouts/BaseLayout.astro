@@ -37,6 +37,11 @@ const canonicalUrl = `${siteUrl}${canonicalPath}`;
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalUrl} />
 
+    <!-- Hreflang for multilingual support -->
+    <link rel="alternate" hreflang="en" href={canonicalUrl} />
+    <link rel="alternate" hreflang="es" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -46,6 +51,7 @@ const canonicalUrl = `${siteUrl}${canonicalPath}`;
 
     <!-- Robots -->
     <meta name="robots" content={robots} />
+    <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
     <meta name="google-adsense-account" content="ca-pub-9282727224828020" />
 
     <script

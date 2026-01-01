@@ -19,4 +19,13 @@ await sharp(iconSvg)
 
 console.log('✓ Created apple-touch-icon.png (180x180)');
 
-console.log('\nBoth images created successfully!');
+// Convert Logo for Schema (512x512)
+const faviconSvg = readFileSync('/Users/mateqac/Work/tetonor-puzzle/public/favicon.svg');
+await sharp(faviconSvg)
+  .resize(512, 512)
+  .png()
+  .toFile('/Users/mateqac/Work/tetonor-puzzle/public/logo-512.png');
+
+console.log('✓ Created logo-512.png (512x512)');
+
+console.log('\nAll images created successfully!');

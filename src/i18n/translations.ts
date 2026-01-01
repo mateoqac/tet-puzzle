@@ -258,6 +258,26 @@ export const translations = {
     termsSeverabilityDesc: 'If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary, and the remaining provisions shall remain in full force and effect.',
     termsContact: 'Contact Us',
     termsContactDesc: 'If you have any questions about these Terms of Service, please contact us through our website.',
+
+    // Homepage SEO Content
+    seoHowToPlay: 'How to Play Tet Puzzle',
+    seoHowToPlayDesc: 'Tet Puzzle is a number logic game where you match pairs of numbers to achieve target sums and products. Each puzzle presents a 4x4 grid with 16 cells to fill.',
+    seoHowToPlayStep1: 'Look at the target number in each cell',
+    seoHowToPlayStep2: 'Select two numbers from the strip below',
+    seoHowToPlayStep3: 'Choose an operation: addition (+) or multiplication (x)',
+    seoHowToPlayStep4: 'Each pair must be used exactly twice: once for addition, once for multiplication',
+    seoLearnMore: 'Learn more about the rules',
+    seoRules: 'Tet Puzzle Rules',
+    seoRulesMain: 'Every pair of numbers must be used exactly twice: once for addition and once for multiplication.',
+    seoRulesDesc: 'This core rule is what makes Tet Puzzle challenging. You cannot use a pair only for sums or only for products - you must find cells where each pair works for both operations.',
+    seoFaq: 'Frequently Asked Questions',
+    seoFaqQ1: 'Is Tet Puzzle free to play?',
+    seoFaqA1: 'Yes! Tet Puzzle is completely free to play. No registration or payment required. Play as many puzzles as you want.',
+    seoFaqQ2: 'How often are new puzzles available?',
+    seoFaqA2: 'A new Daily Challenge puzzle is available every day at midnight. You can also play unlimited Free Play puzzles at any difficulty level.',
+    seoFaqQ3: 'Can I play previous daily puzzles?',
+    seoFaqA3: 'Yes! Visit the Archive to access all previous daily challenge puzzles and track your progress.',
+    seoViewAllFaq: 'View all frequently asked questions',
   },
   es: {
     // Header
@@ -518,6 +538,26 @@ export const translations = {
     termsSeverabilityDesc: 'Si alguna disposición de estos Términos se considera inaplicable o inválida, dicha disposición se limitará o eliminará en la medida mínima necesaria, y las disposiciones restantes permanecerán en pleno vigor y efecto.',
     termsContact: 'Contáctanos',
     termsContactDesc: 'Si tienes alguna pregunta sobre estos Términos de Servicio, por favor contáctanos a través de nuestro sitio web.',
+
+    // Homepage SEO Content
+    seoHowToPlay: 'Cómo Jugar Tet Puzzle',
+    seoHowToPlayDesc: 'Tet Puzzle es un juego de lógica numérica donde emparejas números para lograr sumas y productos objetivo. Cada puzzle presenta una cuadrícula de 4x4 con 16 celdas para rellenar.',
+    seoHowToPlayStep1: 'Observa el número objetivo en cada celda',
+    seoHowToPlayStep2: 'Selecciona dos números de la tira inferior',
+    seoHowToPlayStep3: 'Elige una operación: suma (+) o multiplicación (x)',
+    seoHowToPlayStep4: 'Cada par debe usarse exactamente dos veces: una para suma, otra para multiplicación',
+    seoLearnMore: 'Aprende más sobre las reglas',
+    seoRules: 'Reglas de Tet Puzzle',
+    seoRulesMain: 'Cada par de números debe usarse exactamente dos veces: una para suma y otra para multiplicación.',
+    seoRulesDesc: 'Esta regla fundamental es lo que hace a Tet Puzzle desafiante. No puedes usar un par solo para sumas o solo para productos - debes encontrar celdas donde cada par funcione para ambas operaciones.',
+    seoFaq: 'Preguntas Frecuentes',
+    seoFaqQ1: '¿Es gratis jugar Tet Puzzle?',
+    seoFaqA1: '¡Sí! Tet Puzzle es completamente gratis. No requiere registro ni pago. Juega tantos puzzles como quieras.',
+    seoFaqQ2: '¿Con qué frecuencia hay nuevos puzzles?',
+    seoFaqA2: 'Un nuevo Desafío Diario está disponible cada día a medianoche. También puedes jugar puzzles ilimitados en Juego Libre a cualquier nivel de dificultad.',
+    seoFaqQ3: '¿Puedo jugar puzzles diarios anteriores?',
+    seoFaqA3: '¡Sí! Visita el Archivo para acceder a todos los desafíos diarios anteriores y seguir tu progreso.',
+    seoViewAllFaq: 'Ver todas las preguntas frecuentes',
   },
 } as const;
 

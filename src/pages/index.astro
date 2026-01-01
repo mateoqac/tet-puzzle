@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import App from "../components/App";
 import AdUnit from "../components/AdUnit";
+import HomepageSeoContent from "../components/HomepageSeoContent";
 import { generateBeginnerPuzzle } from "../lib/puzzleGenerator";
 import SpeedInsights from "@vercel/speed-insights/astro";
 const puzzle = generateBeginnerPuzzle();
@@ -16,6 +17,28 @@ const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "Tet Puzzle",
+      url: siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/logo-512.png`,
+        width: 512,
+        height: 512,
+      },
+      foundingDate: "2024",
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Tet Puzzle",
+      description: description,
+      publisher: { "@id": `${siteUrl}/#organization` },
+      inLanguage: ["en", "es"],
+    },
+    {
       "@type": "WebApplication",
       "@id": `${siteUrl}/#webapp`,
       name: "Tet Puzzle",
@@ -29,7 +52,7 @@ const structuredData = {
         priceCurrency: "USD",
       },
       browserRequirements: "Requires JavaScript enabled",
-      inLanguage: "en-US",
+      inLanguage: ["en-US", "es-ES"],
     },
     {
       "@type": "Game",
@@ -72,6 +95,30 @@ const structuredData = {
             text: "Tet puzzle challenges players with number logic and mathematical reasoning. Each pair of numbers must be used exactly twice - once for addition and once for multiplication.",
           },
         },
+        {
+          "@type": "Question",
+          name: "Is Tet Puzzle free to play?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, Tet Puzzle is completely free to play. No registration or payment required.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How often are new puzzles available?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "A new Daily Challenge puzzle is available every day. You can also play unlimited Free Play puzzles at any time.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can I play previous daily puzzles?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes! Visit the Archive to access and play all previous daily challenge puzzles.",
+          },
+        },
       ],
     },
   ],
@@ -96,6 +143,7 @@ const structuredData = {
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Tet Puzzle" />
     <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="es_ES" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -107,7 +155,7 @@ const structuredData = {
     <!-- Additional Meta -->
     <meta
       name="keywords"
-      content="tet puzzle, number puzzle, logic game, brain teaser, math puzzle, daily puzzle"
+      content="tet puzzle, tetonor, number puzzle, logic game, brain teaser, math puzzle, daily puzzle, free online puzzle, arithmetic game, number logic"
     />
     <meta name="author" content="Tet Puzzle" />
 
@@ -125,7 +173,7 @@ const structuredData = {
 
     <main id="main-content" role="main" class="flex-initial min-w-0">
       <header class="sr-only">
-        <h1>Tet Puzzle - Number Logic Game</h1>
+        <h1>Play Tet Puzzle Online Free - Number Logic Game</h1>
         <p>
           Tet puzzle is a challenging number logic game. The puzzle presents a
           grid where each cell contains a target number. Players must find pairs
@@ -148,5 +196,8 @@ const structuredData = {
       <AdUnit client:only="preact" slot="4102637707" />
     </aside>
   </div>
+
+  <HomepageSeoContent client:visible />
+
   <SpeedInsights />
 </BaseLayout>
