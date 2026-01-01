@@ -1,0 +1,6 @@
+# robots.txt for Tetonor Puzzle
+
+User-agent: *
+Allow: /
+
+Sitemap: https://tetonor.app/sitemap-index.xml

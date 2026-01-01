@@ -5,7 +5,7 @@ function HowToPlayInner() {
   const { t } = useTranslation();
 
   return (
-    <main class="max-w-[700px] mx-auto py-8 px-4">
+    <main class="max-w-[800px] mx-auto py-8 px-4">
       <nav class="mb-8">
         <a href="/" class="text-gray-700 no-underline text-base hover:underline">
           {t('backToGame')}
@@ -81,7 +81,7 @@ function HowToPlayInner() {
         </div>
       </article>
 
-      <Footer showLegalLinks={false} />
+      <Footer />
     </main>
   );
 }

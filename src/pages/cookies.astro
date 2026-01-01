@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CookiesContent from "../components/CookiesContent";
+
+const title = "Cookie Policy - Tet Puzzle";
+const description = "Learn how Tet Puzzle uses cookies and similar technologies to improve your experience.";
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/cookies" showFooter={false}>
+  <CookiesContent client:load />
+</BaseLayout>
