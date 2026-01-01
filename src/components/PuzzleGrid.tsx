@@ -1,7 +1,7 @@
 import type { GridCell, PuzzleState, Operation } from '../types/puzzle';
 import { validateCell } from '../lib/puzzleValidator';
-import GridCellComponent from './GridCellComponent';
-import './PuzzleGrid.css';
+import GridCellComponent, { type SelectionField } from './GridCellComponent';
+import type { InputMode } from '../lib/settings';
 
 interface PuzzleGridProps {
   grid: GridCell[];
@@ -20,6 +20,8 @@ interface PuzzleGridProps {
   selectedCellId: string | null;
   showValidation: boolean;
   puzzle: PuzzleState;
+  inputMode?: InputMode;
+  activeField?: SelectionField | null;
 }
 
 export default function PuzzleGrid({
@@ -31,10 +33,12 @@ export default function PuzzleGrid({
   selectedCellId,
   showValidation,
   puzzle,
+  inputMode = 'keyboard',
+  activeField = null,
 }: PuzzleGridProps) {
   return (
     <div
-      class="puzzle-grid"
+      class="grid mx-auto w-fit border border-black bg-white"
       role="grid"
       aria-label="Puzzle grid - enter two numbers and select an operation for each target"
       style={{
@@ -42,9 +46,11 @@ export default function PuzzleGrid({
         gridTemplateRows: `repeat(${dimensions.rows}, 1fr)`,
       }}
     >
-      {grid.map((cell) => {
+      {grid.map((cell, index) => {
         const validation = showValidation ? validateCell(cell, puzzle) : null;
         const isSelected = cell.id === selectedCellId;
+        const isLastCol = (index + 1) % dimensions.cols === 0;
+        const isLastRow = index >= grid.length - dimensions.cols;
 
         return (
           <GridCellComponent
@@ -55,6 +61,10 @@ export default function PuzzleGrid({
             onInput={onCellInput}
             onSelect={onCellSelect}
             onNavigate={onCellNavigate}
+            isLastCol={isLastCol}
+            isLastRow={isLastRow}
+            inputMode={inputMode}
+            activeField={isSelected ? activeField : null}
           />
         );
       })}

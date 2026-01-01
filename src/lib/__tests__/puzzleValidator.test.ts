@@ -552,7 +552,7 @@ describe('puzzleValidator', () => {
 
       const hint = getHintForCell(cell, puzzle);
 
-      expect(hint).toBe('Try adding 3 and 7');
+      expect(hint).toBe('3 + 7 = 10');
     });
 
     it('should provide hint for multiplication', () => {
@@ -579,7 +579,7 @@ describe('puzzleValidator', () => {
 
       const hint = getHintForCell(cell, puzzle);
 
-      expect(hint).toBe('Try multiplying 3 and 7');
+      expect(hint).toBe('3 × 7 = 21');
     });
 
     it('should return null when solution pair not found', () => {

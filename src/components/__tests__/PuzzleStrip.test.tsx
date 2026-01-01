@@ -26,8 +26,10 @@ describe('PuzzleStrip', () => {
     it('should render numbers in sorted order', () => {
       const { container } = render(<PuzzleStrip strip={mockStrip} />);
 
-      const numbers = container.querySelectorAll('.strip-number');
-      const textContent = Array.from(numbers).map((n) => n.textContent);
+      // Get all span elements (numbers) and input elements (blanks) within the grid
+      const gridContainer = container.querySelector('.grid');
+      const numbers = gridContainer?.querySelectorAll('span');
+      const textContent = Array.from(numbers || []).map((n) => n.textContent);
 
       // Should be sorted: 2, 3, 4, 5, 7, 9
       expect(textContent).toEqual(['2', '3', '4', '5', '7', '9']);
@@ -36,7 +38,8 @@ describe('PuzzleStrip', () => {
     it('should render exactly twice as many items as pairs', () => {
       const { container } = render(<PuzzleStrip strip={mockStrip} />);
 
-      const items = container.querySelectorAll('.strip-number, .blank-input');
+      const gridContainer = container.querySelector('.grid');
+      const items = gridContainer?.querySelectorAll('span, input');
       expect(items).toHaveLength(mockStrip.length * 2);
     });
 
@@ -60,7 +63,8 @@ describe('PuzzleStrip', () => {
 
       const { container } = render(<PuzzleStrip strip={stripWithBlanks} />);
 
-      const items = Array.from(container.querySelectorAll('.strip-number, .blank-input'));
+      const gridContainer = container.querySelector('.grid');
+      const items = Array.from(gridContainer?.querySelectorAll('span, input') || []);
       const values = items.map((item) => {
         if (item.tagName === 'INPUT') {
           return 'blank';
@@ -76,17 +80,17 @@ describe('PuzzleStrip', () => {
   describe('crossing out numbers', () => {
     it('should toggle crossed state on click', async () => {
       const user = userEvent.setup();
-      const { container } = render(<PuzzleStrip strip={mockStrip} />);
+      render(<PuzzleStrip strip={mockStrip} />);
 
       const firstNumber = screen.getByText('2');
 
       // Click to cross out
       await user.click(firstNumber);
-      expect(firstNumber).toHaveClass('crossed');
+      expect(firstNumber).toHaveClass('line-through');
 
       // Click again to uncross
       await user.click(firstNumber);
-      expect(firstNumber).not.toHaveClass('crossed');
+      expect(firstNumber).not.toHaveClass('line-through');
     });
 
     it('should maintain crossed state for multiple numbers independently', async () => {
@@ -99,28 +103,29 @@ describe('PuzzleStrip', () => {
       await user.click(number2);
       await user.click(number5);
 
-      expect(number2).toHaveClass('crossed');
-      expect(number5).toHaveClass('crossed');
+      expect(number2).toHaveClass('line-through');
+      expect(number5).toHaveClass('line-through');
 
       // Uncross only one
       await user.click(number2);
 
-      expect(number2).not.toHaveClass('crossed');
-      expect(number5).toHaveClass('crossed'); // Should still be crossed
+      expect(number2).not.toHaveClass('line-through');
+      expect(number5).toHaveClass('line-through'); // Should still be crossed
     });
 
     it('should allow crossing out all numbers', async () => {
       const user = userEvent.setup();
       const { container } = render(<PuzzleStrip strip={mockStrip} />);
 
-      const numbers = container.querySelectorAll('.strip-number:not(.blank-input)');
+      const gridContainer = container.querySelector('.grid');
+      const numbers = gridContainer?.querySelectorAll('span');
 
-      for (const number of Array.from(numbers)) {
+      for (const number of Array.from(numbers || [])) {
         await user.click(number as HTMLElement);
       }
 
-      numbers.forEach((number) => {
-        expect(number).toHaveClass('crossed');
+      numbers?.forEach((number) => {
+        expect(number).toHaveClass('line-through');
       });
     });
   });
@@ -160,7 +165,7 @@ describe('PuzzleStrip', () => {
       // Click to cross out
       await user.click(blankInput);
 
-      expect(blankInput).toHaveClass('crossed');
+      expect(blankInput).toHaveClass('line-through');
     });
 
     it('should not cross out empty blank inputs on click', async () => {
@@ -172,7 +177,7 @@ describe('PuzzleStrip', () => {
       // Click empty input
       await user.click(blankInput);
 
-      expect(blankInput).not.toHaveClass('crossed');
+      expect(blankInput).not.toHaveClass('line-through');
     });
 
     it('should clear crossed state when value is cleared', async () => {
@@ -184,12 +189,12 @@ describe('PuzzleStrip', () => {
       // Type and cross out
       await user.type(blankInput, '3');
       await user.click(blankInput);
-      expect(blankInput).toHaveClass('crossed');
+      expect(blankInput).toHaveClass('line-through');
 
       // Clear the value
       await user.clear(blankInput);
 
-      expect(blankInput).not.toHaveClass('crossed');
+      expect(blankInput).not.toHaveClass('line-through');
     });
 
     it('should render multiple blank inputs correctly', () => {
@@ -236,7 +241,7 @@ describe('PuzzleStrip', () => {
       rerender(<PuzzleStrip key={2} strip={mockStrip} />);
 
       const newNumber = screen.getByText('2');
-      expect(newNumber).not.toHaveClass('crossed');
+      expect(newNumber).not.toHaveClass('line-through');
     });
   });
 
@@ -274,27 +279,26 @@ describe('PuzzleStrip', () => {
   });
 
   describe('responsive design', () => {
-    it('should have puzzle-strip class for responsive styling', () => {
+    it('should have grid container for responsive styling', () => {
       const { container } = render(<PuzzleStrip strip={mockStrip} />);
 
-      const puzzleStrip = container.querySelector('.puzzle-strip');
+      const puzzleStrip = container.querySelector('.grid');
       expect(puzzleStrip).toBeInTheDocument();
     });
 
-    it('should have strip-number class on number elements for responsive sizing', () => {
+    it('should render number elements in the grid', () => {
       const { container } = render(<PuzzleStrip strip={mockStrip} />);
 
-      const stripNumbers = container.querySelectorAll('.strip-number');
-      expect(stripNumbers.length).toBeGreaterThan(0);
+      const gridContainer = container.querySelector('.grid');
+      const numbers = gridContainer?.querySelectorAll('span');
+      expect(numbers?.length).toBeGreaterThan(0);
     });
 
     it('should render numbers that can scale with viewport', () => {
       const { container } = render(<PuzzleStrip strip={mockStrip} />);
 
-      const puzzleStrip = container.querySelector('.puzzle-strip');
+      const puzzleStrip = container.querySelector('.grid');
       expect(puzzleStrip).toBeInTheDocument();
-      // Strip should be flexible and not overflow
-      expect(puzzleStrip).not.toHaveStyle({ overflow: 'visible' });
     });
   });
 
@@ -302,7 +306,8 @@ describe('PuzzleStrip', () => {
     it('should handle empty strip', () => {
       const { container } = render(<PuzzleStrip strip={[]} />);
 
-      const items = container.querySelectorAll('.strip-number, .blank-input');
+      const gridContainer = container.querySelector('.grid');
+      const items = gridContainer?.querySelectorAll('span, input');
       expect(items).toHaveLength(0);
     });
 

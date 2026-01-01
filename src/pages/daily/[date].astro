@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DailyPuzzleApp from "../../components/DailyPuzzleApp";
+import {
+  generateDailyPuzzle,
+  isValidDailyDate,
+  getDailyChallengeNumber,
+  getDailyChallengeDifficulty,
+  LAUNCH_DATE,
+} from "../../lib/dailyChallenge";
+import { getTodayDateString, getDaysSinceLaunch } from "../../lib/seededRandom";
+
+// Get static paths for all valid dates
+export function getStaticPaths() {
+  const today = new Date();
+  const launchDate = new Date(LAUNCH_DATE);
+  const paths = [];
+
+  // Generate paths for all dates from launch to today
+  let currentDate = new Date(launchDate);
+  while (currentDate <= today) {
+    const dateString = currentDate.toISOString().split("T")[0];
+    paths.push({
+      params: { date: dateString },
+    });
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return paths;
+}
+
+const { date } = Astro.params;
+
+// Validate date
+if (!date || !isValidDailyDate(date)) {
+  return Astro.redirect("/daily/archive");
+}
+
+const puzzle = generateDailyPuzzle(date);
+const puzzleNumber = getDailyChallengeNumber(date);
+const difficulty = getDailyChallengeDifficulty(date);
+
+const formattedDate = new Date(date).toLocaleDateString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+
+const title = `Daily Challenge #${puzzleNumber} - ${formattedDate} | Tetonor`;
+const description = `Play Tetonor daily challenge #${puzzleNumber} from ${formattedDate}. A ${difficulty} difficulty number logic puzzle.`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath={`/daily/${date}`}
+  showFooter={false}
+>
+  <main class="max-w-4xl mx-auto px-4 py-4">
+    <DailyPuzzleApp
+      client:load
+      initialPuzzle={puzzle}
+      dateString={date}
+      puzzleNumber={puzzleNumber}
+      difficulty={difficulty}
+    />
+  </main>
+</BaseLayout>

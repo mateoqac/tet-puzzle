@@ -309,10 +309,18 @@ export function getHintForCell(
 ): string | null {
   const solutionPair = findPairById(puzzle.strip, cell.solutionPairId);
 
-  if (!solutionPair || solutionPair.first === null || solutionPair.second === null) {
+  if (!solutionPair) {
     return null;
   }
 
-  const operation = cell.operation === 'add' ? 'adding' : 'multiplying';
-  return `Try ${operation} ${solutionPair.first} and ${solutionPair.second}`;
+  // Use original values if available (for hidden numbers), otherwise use displayed values
+  const first = solutionPair.firstOriginal ?? solutionPair.first;
+  const second = solutionPair.secondOriginal ?? solutionPair.second;
+
+  if (first === null || second === null) {
+    return null;
+  }
+
+  const operation = cell.operation === 'add' ? '+' : '×';
+  return `${first} ${operation} ${second} = ${cell.target}`;
 }

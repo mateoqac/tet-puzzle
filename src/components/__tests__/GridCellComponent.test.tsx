@@ -33,6 +33,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -46,6 +48,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -60,6 +64,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -76,6 +82,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -91,6 +99,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -106,6 +116,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -126,6 +138,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -135,17 +149,19 @@ describe('GridCellComponent', () => {
     });
 
     it('should apply selected class when selected', () => {
-      const { container } = render(
+      render(
         <GridCellComponent
           cell={mockCell}
           isSelected={true}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
-      const gridCell = container.querySelector('.grid-cell');
-      expect(gridCell).toHaveClass('selected');
+      const gridCell = screen.getByRole('gridcell');
+      expect(gridCell).toHaveClass('bg-blue-50');
     });
 
     it('should apply correct class when validation passes', () => {
@@ -158,17 +174,19 @@ describe('GridCellComponent', () => {
         message: 'Correct!',
       };
 
-      const { container } = render(
+      render(
         <GridCellComponent
           cell={{ ...mockCell, playerFirst: 3, playerSecond: 7, playerOperation: 'add' }}
           isSelected={false}
           validation={validation}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
-      const gridCell = container.querySelector('.grid-cell');
-      expect(gridCell).toHaveClass('correct');
+      const gridCell = screen.getByRole('gridcell');
+      expect(gridCell).toHaveClass('bg-green-50');
     });
 
     it('should apply incorrect class when validation fails', () => {
@@ -181,17 +199,19 @@ describe('GridCellComponent', () => {
         message: 'Incorrect',
       };
 
-      const { container } = render(
+      render(
         <GridCellComponent
           cell={{ ...mockCell, playerFirst: 2, playerSecond: 5, playerOperation: 'add' }}
           isSelected={false}
           validation={validation}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
-      const gridCell = container.querySelector('.grid-cell');
-      expect(gridCell).toHaveClass('incorrect');
+      const gridCell = screen.getByRole('gridcell');
+      expect(gridCell).toHaveClass('bg-red-50');
     });
 
     it('should show validation error indicator', () => {
@@ -204,16 +224,19 @@ describe('GridCellComponent', () => {
         message: 'Pair not found',
       };
 
-      const { container } = render(
+      render(
         <GridCellComponent
           cell={{ ...mockCell, playerFirst: 2, playerSecond: 5, playerOperation: 'add' }}
           isSelected={false}
           validation={validation}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
-      const errorIndicator = container.querySelector('.validation-message');
+      // Error indicator shows "!" with title attribute containing the message
+      const errorIndicator = screen.getByTitle('Pair not found');
       expect(errorIndicator).toBeInTheDocument();
       expect(errorIndicator).toHaveTextContent('!');
     });
@@ -229,6 +252,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -247,6 +272,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -266,6 +293,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -284,6 +313,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -301,6 +332,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -316,6 +349,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -333,6 +368,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -351,6 +388,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -374,6 +413,8 @@ describe('GridCellComponent', () => {
           isSelected={true}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -393,6 +434,8 @@ describe('GridCellComponent', () => {
           isSelected={true}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -412,6 +455,8 @@ describe('GridCellComponent', () => {
           isSelected={true}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -431,6 +476,8 @@ describe('GridCellComponent', () => {
           isSelected={true}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -450,6 +497,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -469,6 +518,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -481,47 +532,52 @@ describe('GridCellComponent', () => {
   });
 
   describe('responsive design', () => {
-    it('should have grid-cell class for responsive styling', () => {
-      const { container } = render(
+    it('should have gridcell role for responsive styling', () => {
+      render(
         <GridCellComponent
           cell={mockCell}
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
-      const gridCell = container.querySelector('.grid-cell');
+      const gridCell = screen.getByRole('gridcell');
       expect(gridCell).toBeInTheDocument();
-      expect(gridCell).toHaveClass('grid-cell');
     });
 
-    it('should have cell-target class for responsive target area', () => {
-      const { container } = render(
+    it('should have target number area', () => {
+      render(
         <GridCellComponent
           cell={mockCell}
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
-      const cellTarget = container.querySelector('.cell-target');
-      expect(cellTarget).toBeInTheDocument();
+      const targetNumber = screen.getByText('10');
+      expect(targetNumber).toBeInTheDocument();
     });
 
-    it('should have cell-inputs class for responsive inputs area', () => {
-      const { container } = render(
+    it('should have inputs area', () => {
+      render(
         <GridCellComponent
           cell={mockCell}
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
-      const cellInputs = container.querySelector('.cell-inputs');
-      expect(cellInputs).toBeInTheDocument();
+      const inputs = screen.getAllByRole('spinbutton');
+      expect(inputs).toHaveLength(2);
     });
   });
 
@@ -533,6 +589,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -546,6 +604,8 @@ describe('GridCellComponent', () => {
           isSelected={true}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -560,6 +620,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -582,6 +644,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -597,6 +661,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -620,6 +686,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={validation}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 
@@ -636,6 +704,8 @@ describe('GridCellComponent', () => {
           isSelected={false}
           validation={null}
           {...mockHandlers}
+          isLastCol={false}
+          isLastRow={false}
         />
       );
 

@@ -8,15 +8,19 @@ const { showLegalLinks = true } = Astro.props;
 
 <footer class="site-footer">
   <div class="footer-content">
-    {
-      showLegalLinks && (
-        <nav class="footer-links">
+    <nav class="footer-links">
+      <a href="/how-to-play">How to Play</a>
+      <span class="separator">|</span>
+      <a href="/faq">FAQ</a>
+      {showLegalLinks && (
+        <>
+          <span class="separator">|</span>
           <a href="/privacy">Privacy Policy</a>
           <span class="separator">|</span>
           <a href="/terms">Terms of Service</a>
-        </nav>
-      )
-    }
+        </>
+      )}
+    </nav>
     <p class="copyright">
       <span class="copyright-icon">&copy;</span> 2025 Tet Puzzle. All rights reserved.
     </p>

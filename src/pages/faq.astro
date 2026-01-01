@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FaqContent from "../components/FaqContent";
+
+const title = "FAQ - Tet Puzzle";
+const description = "Frequently asked questions about Tet Puzzle. Find answers about gameplay, rules, daily challenges, and more.";
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/faq" showFooter={false}>
+  <FaqContent client:load />
+</BaseLayout>

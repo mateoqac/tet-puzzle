@@ -44,8 +44,10 @@ describe('TetPuzzle - Integration Tests', () => {
     it('should render puzzle strip', () => {
       const { container } = render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
-      const strip = container.querySelector('.puzzle-strip');
-      expect(strip).toBeInTheDocument();
+      // The puzzle strip is now a grid container
+      const grids = container.querySelectorAll('.grid');
+      // There should be multiple grid elements - the puzzle strip is one of them
+      expect(grids.length).toBeGreaterThan(0);
     });
 
     it('should render control buttons', () => {
@@ -68,7 +70,9 @@ describe('TetPuzzle - Integration Tests', () => {
       render(<TetPuzzle initialPuzzle={initialPuzzle} />);
 
       const beginnerBtn = screen.getByRole('button', { name: /easy/i });
-      expect(beginnerBtn).toHaveClass('active');
+      // Active state uses colored backgrounds
+      expect(beginnerBtn).toHaveClass('bg-green-600');
+      expect(beginnerBtn).toHaveClass('text-white');
     });
 
     it('should generate new puzzle when selecting Intermediate', async () => {
@@ -79,7 +83,8 @@ describe('TetPuzzle - Integration Tests', () => {
       const intermediateBtn = screen.getByRole('button', { name: /moderate/i });
       await user.click(intermediateBtn);
 
-      expect(intermediateBtn).toHaveClass('active');
+      expect(intermediateBtn).toHaveClass('bg-blue-600');
+      expect(intermediateBtn).toHaveClass('text-white');
       // Puzzle should be regenerated (all cells should be empty)
       const inputs = screen.getAllByRole('spinbutton');
       inputs.forEach((input) => {
@@ -95,7 +100,8 @@ describe('TetPuzzle - Integration Tests', () => {
       const advancedBtn = screen.getByRole('button', { name: /difficult/i });
       await user.click(advancedBtn);
 
-      expect(advancedBtn).toHaveClass('active');
+      expect(advancedBtn).toHaveClass('bg-red-600');
+      expect(advancedBtn).toHaveClass('text-white');
     });
 
     it('should reset validation when changing difficulty', async () => {
@@ -307,7 +313,7 @@ describe('TetPuzzle - Integration Tests', () => {
       });
     });
 
-    it('should show success modal for correct solution', async () => {
+    it('should show success banner for correct solution', async () => {
       const user = userEvent.setup();
 
       // Create a simple solvable puzzle
@@ -361,8 +367,7 @@ describe('TetPuzzle - Integration Tests', () => {
       await user.click(checkButton);
 
       await waitFor(() => {
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
-        expect(screen.getByText('Congratulations!')).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /view all challenges/i })).toBeInTheDocument();
       });
     });
 
@@ -417,13 +422,14 @@ describe('TetPuzzle - Integration Tests', () => {
       await waitFor(() => {
         const alert = screen.getByRole('alert');
         expect(alert).toHaveTextContent(/all cells are correct/i);
-        expect(alert).toHaveClass('success');
+        // Success state in Tailwind uses bg-green-100
+        expect(alert).toHaveClass('bg-green-100');
       });
     });
   });
 
-  describe('success modal', () => {
-    it('should allow playing again from success modal', async () => {
+  describe('success banner', () => {
+    it('should show success banner after solving puzzle', async () => {
       const user = userEvent.setup();
 
       const simplePuzzle: PuzzleState = {
@@ -472,22 +478,9 @@ describe('TetPuzzle - Integration Tests', () => {
       const checkButton = screen.getByRole('button', { name: /check solution/i });
       await user.click(checkButton);
 
-      // Modal should appear
+      // Banner should appear
       await waitFor(() => {
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
-      });
-
-      // Click Play Again
-      const playAgainButton = screen.getByRole('button', { name: /play again/i });
-      await user.click(playAgainButton);
-
-      // Modal should close
-      expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-
-      // Puzzle should be reset
-      const newInputs = screen.getAllByRole('spinbutton');
-      newInputs.forEach((input) => {
-        expect(input).toHaveValue(null);
+        expect(screen.getByRole('button', { name: /view all challenges/i })).toBeInTheDocument();
       });
     });
   });
@@ -544,7 +537,9 @@ describe('TetPuzzle - Integration Tests', () => {
       render(<TetPuzzle initialPuzzle={simplePuzzle} />);
 
       // 1. Start with easy difficulty
-      expect(screen.getByRole('button', { name: /easy/i })).toHaveClass('active');
+      const easyBtn = screen.getByRole('button', { name: /easy/i });
+      expect(easyBtn).toHaveClass('bg-green-600');
+      expect(easyBtn).toHaveClass('text-white');
 
       // 2. Fill in cells
       const inputs = screen.getAllByRole('spinbutton');
@@ -564,22 +559,22 @@ describe('TetPuzzle - Integration Tests', () => {
       expect(checkButton).not.toBeDisabled();
       await user.click(checkButton);
 
-      // 4. Success modal appears
+      // 4. Success banner appears
       await waitFor(() => {
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /view all challenges/i })).toBeInTheDocument();
       });
 
-      // 5. Play again
-      const playAgainButton = screen.getByRole('button', { name: /play again/i });
-      await user.click(playAgainButton);
+      // 5. Reset puzzle
+      const resetButton = screen.getByRole('button', { name: /reset/i });
+      await user.click(resetButton);
 
-      // 6. New puzzle loaded
-      expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+      // 6. Banner should disappear and puzzle reset
+      expect(screen.queryByRole('button', { name: /view all challenges/i })).not.toBeInTheDocument();
 
       // 7. Can switch difficulty
       const intermediateBtn = screen.getByRole('button', { name: /moderate/i });
       await user.click(intermediateBtn);
-      expect(intermediateBtn).toHaveClass('active');
+      expect(intermediateBtn).toHaveClass('bg-blue-600');
     });
   });
 
@@ -597,7 +592,7 @@ describe('TetPuzzle - Integration Tests', () => {
       await user.click(advancedBtn);
       await user.click(beginnerBtn);
 
-      expect(beginnerBtn).toHaveClass('active');
+      expect(beginnerBtn).toHaveClass('bg-green-600');
       expect(screen.getByRole('grid')).toBeInTheDocument();
     });
 

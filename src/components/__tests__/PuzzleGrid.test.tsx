@@ -111,7 +111,7 @@ describe('PuzzleGrid', () => {
         />
       );
 
-      const grid = container.querySelector('.puzzle-grid');
+      const grid = screen.getByRole('grid');
       expect(grid).toHaveStyle({
         gridTemplateColumns: 'repeat(4, 1fr)',
         gridTemplateRows: 'repeat(3, 1fr)',
@@ -346,7 +346,7 @@ describe('PuzzleGrid', () => {
         />
       );
 
-      const grid = container.querySelector('.puzzle-grid');
+      const grid = screen.getByRole('grid');
       expect(grid).toHaveStyle({
         gridTemplateColumns: 'repeat(2, 1fr)',
         gridTemplateRows: 'repeat(1, 1fr)',
