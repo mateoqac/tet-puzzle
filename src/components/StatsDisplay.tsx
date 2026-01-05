@@ -54,7 +54,7 @@ export default function StatsDisplay({ isOpen, onClose }: StatsDisplayProps) {
             {t('statistics')}
           </h2>
           <button
-            class="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-all duration-200"
+            class="p-1.5 text-gray-600 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-all duration-200"
             onClick={onClose}
             aria-label="Close"
           >
@@ -70,13 +70,13 @@ export default function StatsDisplay({ isOpen, onClose }: StatsDisplayProps) {
             /* Empty State */
             <div class="text-center py-8">
               <div class="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gray-400">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gray-500">
                   <path d="M8 21h8m-4-4v4m-5.2-4h10.4c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.311-1.311C22 14.72 22 13.88 22 12.2V7.8c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311C19.72 3 18.88 3 17.2 3H6.8c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.311 1.311C2 5.28 2 6.12 2 7.8v4.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311C4.28 17 5.12 17 6.8 17Z" />
                   <path d="M12 7v4l2 2" />
                 </svg>
               </div>
               <h3 class="text-lg font-semibold text-gray-700 mb-2">{t('noStatsYet')}</h3>
-              <p class="text-sm text-gray-500 max-w-[250px] mx-auto">{t('completeFirstPuzzle')}</p>
+              <p class="text-sm text-gray-600 max-w-[250px] mx-auto">{t('completeFirstPuzzle')}</p>
             </div>
           ) : (
             /* Stats Content */
@@ -84,19 +84,19 @@ export default function StatsDisplay({ isOpen, onClose }: StatsDisplayProps) {
               <div class="grid grid-cols-2 gap-3 mb-6">
                 <div class="text-center p-4 bg-gray-50 rounded-xl">
                   <span class="block text-2xl font-bold text-gray-900 font-mono">{totalPlayed}</span>
-                  <span class="block text-xs text-gray-500 mt-1 uppercase tracking-wide">{t('gamesPlayed')}</span>
+                  <span class="block text-xs text-gray-600 mt-1 uppercase tracking-wide">{t('gamesPlayed')}</span>
                 </div>
                 <div class="text-center p-4 bg-gray-50 rounded-xl">
                   <span class="block text-2xl font-bold text-gray-900 font-mono">{totalWon}</span>
-                  <span class="block text-xs text-gray-500 mt-1 uppercase tracking-wide">{t('gamesWon')}</span>
+                  <span class="block text-xs text-gray-600 mt-1 uppercase tracking-wide">{t('gamesWon')}</span>
                 </div>
                 <div class="text-center p-4 bg-gray-50 rounded-xl">
                   <span class="block text-2xl font-bold text-gray-900 font-mono">{stats.currentStreak}</span>
-                  <span class="block text-xs text-gray-500 mt-1 uppercase tracking-wide">{t('currentStreak')}</span>
+                  <span class="block text-xs text-gray-600 mt-1 uppercase tracking-wide">{t('currentStreak')}</span>
                 </div>
                 <div class="text-center p-4 bg-gray-50 rounded-xl">
                   <span class="block text-2xl font-bold text-gray-900 font-mono">{stats.longestStreak}</span>
-                  <span class="block text-xs text-gray-500 mt-1 uppercase tracking-wide">{t('longestStreak')}</span>
+                  <span class="block text-xs text-gray-600 mt-1 uppercase tracking-wide">{t('longestStreak')}</span>
                 </div>
               </div>
 
@@ -118,19 +118,19 @@ export default function StatsDisplay({ isOpen, onClose }: StatsDisplayProps) {
 
               <div class="bg-gray-50 rounded-xl p-4 mb-6">
                 <div class="flex justify-between py-2 border-b border-gray-200">
-                  <span class="text-gray-500 text-sm">{t('gamesPlayed')}</span>
+                  <span class="text-gray-600 text-sm">{t('gamesPlayed')}</span>
                   <span class="font-semibold text-gray-900 font-mono">{stats.gamesPlayed[selectedDifficulty]}</span>
                 </div>
                 <div class="flex justify-between py-2 border-b border-gray-200">
-                  <span class="text-gray-500 text-sm">{t('gamesWon')}</span>
+                  <span class="text-gray-600 text-sm">{t('gamesWon')}</span>
                   <span class="font-semibold text-gray-900 font-mono">{stats.gamesWon[selectedDifficulty]}</span>
                 </div>
                 <div class="flex justify-between py-2 border-b border-gray-200">
-                  <span class="text-gray-500 text-sm">{t('bestTime')}</span>
+                  <span class="text-gray-600 text-sm">{t('bestTime')}</span>
                   <span class="font-semibold text-gray-900 font-mono">{formatTimeStats(stats.bestTime[selectedDifficulty])}</span>
                 </div>
                 <div class="flex justify-between py-2">
-                  <span class="text-gray-500 text-sm">{t('averageTime')}</span>
+                  <span class="text-gray-600 text-sm">{t('averageTime')}</span>
                   <span class="font-semibold text-gray-900 font-mono">{formatTimeStats(getAverageTime(selectedDifficulty))}</span>
                 </div>
               </div>

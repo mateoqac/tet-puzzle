@@ -39,7 +39,7 @@ export default function Header({
             fill="none"
             stroke="currentColor"
             stroke-width="2"
-            class="text-gray-400"
+            class="text-gray-600"
           >
             <circle cx="12" cy="12" r="10" />
             <polyline points="12 6 12 12 16 14" />
@@ -58,7 +58,7 @@ export default function Header({
             class={`px-2 py-1.5 text-xs font-medium cursor-pointer transition-all duration-200 ${
               language === 'en'
                 ? 'bg-gray-800 text-white'
-                : 'bg-white text-gray-500 hover:bg-gray-50'
+                : 'bg-white text-gray-600 hover:bg-gray-50'
             }`}
             onClick={() => setLanguage('en')}
             aria-label={t('english')}
@@ -70,7 +70,7 @@ export default function Header({
             class={`px-2 py-1.5 text-xs font-medium cursor-pointer transition-all duration-200 ${
               language === 'es'
                 ? 'bg-gray-800 text-white'
-                : 'bg-white text-gray-500 hover:bg-gray-50'
+                : 'bg-white text-gray-600 hover:bg-gray-50'
             }`}
             onClick={() => setLanguage('es')}
             aria-label={t('spanish')}
@@ -83,7 +83,7 @@ export default function Header({
         {/* Archive Button */}
         <button
           onClick={onOpenArchive}
-          class="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-all duration-200"
+          class="p-2 text-gray-600 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-all duration-200"
           aria-label={t('archive')}
           title={t('archive')}
         >
@@ -98,7 +98,7 @@ export default function Header({
         {/* Stats Button */}
         <button
           onClick={onOpenStats}
-          class="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-all duration-200"
+          class="p-2 text-gray-600 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-all duration-200"
           aria-label={t('statistics')}
           title={t('statistics')}
         >
@@ -112,7 +112,7 @@ export default function Header({
         {/* Settings Button */}
         <button
           onClick={onOpenSettings}
-          class="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-all duration-200"
+          class="p-2 text-gray-600 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-all duration-200"
           aria-label={t('settings')}
           title={t('settings')}
         >

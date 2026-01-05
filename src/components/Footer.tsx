@@ -23,7 +23,7 @@ export default function Footer() {
               <a
                 key={link.href}
                 href={link.href}
-                class="text-gray-500 text-sm no-underline hover:underline hover:text-gray-700 whitespace-nowrap"
+                class="text-gray-600 text-sm no-underline hover:underline hover:text-gray-700 whitespace-nowrap"
               >
                 {link.label}
               </a>
@@ -33,7 +33,7 @@ export default function Footer() {
             </>
           ))}
         </nav>
-        <p class="text-gray-400 text-sm m-0">
+        <p class="text-gray-500 text-sm m-0">
           {t('footerCopyright')}
         </p>
       </div>

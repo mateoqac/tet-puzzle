@@ -468,7 +468,7 @@ export default function TetPuzzle({ initialPuzzle }: TetPuzzleProps) {
         )}
         {gameMode === 'daily' && (
           <div class="flex items-center gap-2">
-            <span class="text-sm font-medium text-gray-500 italic">{t('todaysPuzzle')}</span>
+            <span class="text-sm font-medium text-gray-600 italic">{t('todaysPuzzle')}</span>
             <button
               class="inline-flex items-center justify-center p-2 bg-white border border-gray-200 rounded-lg cursor-pointer text-gray-500 transition-all duration-150 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
               onClick={() => setShowArchive(true)}
@@ -616,7 +616,7 @@ export default function TetPuzzle({ initialPuzzle }: TetPuzzleProps) {
           </div>
           <div class="flex-1">
             <span class="block text-sm font-medium text-gray-700">{t('viewAllChallenges')}</span>
-            <span class="block text-xs text-gray-500">{t('exploreAndTrack')}</span>
+            <span class="block text-xs text-gray-600">{t('exploreAndTrack')}</span>
           </div>
           <svg
             width="20"
@@ -625,7 +625,7 @@ export default function TetPuzzle({ initialPuzzle }: TetPuzzleProps) {
             fill="none"
             stroke="currentColor"
             stroke-width="2"
-            class="text-gray-400 group-hover:text-gray-600 transition-colors"
+            class="text-gray-600 group-hover:text-gray-700 transition-colors"
           >
             <polyline points="9 18 15 12 9 6" />
           </svg>

@@ -72,10 +72,10 @@ export default function DailyArchive({ isOpen, onClose, onSelectPuzzle }: DailyA
         <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
           <div>
             <h2 id="archive-title" class="font-serif text-xl font-bold text-gray-900">{t('archive')}</h2>
-            <p class="text-sm text-gray-500">{completedCount}/{challenges.length} {t('completed').toLowerCase()}</p>
+            <p class="text-sm text-gray-600">{completedCount}/{challenges.length} {t('completed').toLowerCase()}</p>
           </div>
           <button
-            class="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-all duration-200"
+            class="p-1.5 text-gray-600 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-all duration-200"
             onClick={onClose}
             aria-label="Close"
           >
@@ -105,7 +105,7 @@ export default function DailyArchive({ isOpen, onClose, onSelectPuzzle }: DailyA
                         </span>
                       )}
                     </div>
-                    <span class="text-sm text-gray-500">{challenge.displayDate}</span>
+                    <span class="text-sm text-gray-600">{challenge.displayDate}</span>
                   </div>
                   <div class="flex items-center gap-2">
                     <DifficultyBadge difficulty={challenge.difficulty} />

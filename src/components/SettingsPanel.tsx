@@ -55,7 +55,7 @@ export default function SettingsPanel({ isOpen, onClose, onSettingsChange }: Set
             {t('settings')}
           </h2>
           <button
-            class="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-all duration-200"
+            class="p-1.5 text-gray-600 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-all duration-200"
             onClick={onClose}
             aria-label="Close"
           >
@@ -88,7 +88,7 @@ export default function SettingsPanel({ isOpen, onClose, onSettingsChange }: Set
                     fill="none"
                     stroke="currentColor"
                     stroke-width="2"
-                    class={settings.inputMode === 'keyboard' ? 'text-emerald-600' : 'text-gray-400'}
+                    class={settings.inputMode === 'keyboard' ? 'text-emerald-600' : 'text-gray-500'}
                   >
                     <rect x="2" y="4" width="20" height="16" rx="2" />
                     <line x1="6" y1="8" x2="6" y2="8" />
@@ -122,7 +122,7 @@ export default function SettingsPanel({ isOpen, onClose, onSettingsChange }: Set
                     fill="none"
                     stroke="currentColor"
                     stroke-width="2"
-                    class={settings.inputMode === 'selection' ? 'text-emerald-600' : 'text-gray-400'}
+                    class={settings.inputMode === 'selection' ? 'text-emerald-600' : 'text-gray-500'}
                   >
                     <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" />
                   </svg>
@@ -206,7 +206,7 @@ export default function SettingsPanel({ isOpen, onClose, onSettingsChange }: Set
               fill="none"
               stroke="currentColor"
               stroke-width="2"
-              class="text-gray-400 group-hover:text-gray-600 transition-colors"
+              class="text-gray-600 group-hover:text-gray-700 transition-colors"
             >
               <polyline points="9 18 15 12 9 6" />
             </svg>

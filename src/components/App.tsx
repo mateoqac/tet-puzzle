@@ -18,7 +18,7 @@ function LanguageSelector() {
         class={`px-2 py-1 border text-xs font-medium cursor-pointer transition-all duration-200 rounded-sm focus:outline focus:outline-2 focus:outline-gray-800 focus:outline-offset-1 ${
           language === 'en'
             ? 'bg-gray-800 text-white border-gray-800'
-            : 'bg-white text-gray-500 border-gray-300 hover:bg-gray-100 hover:border-gray-400'
+            : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-100 hover:border-gray-400'
         }`}
         onClick={() => setLanguage('en')}
         aria-label={t('english')}
@@ -30,7 +30,7 @@ function LanguageSelector() {
         class={`px-2 py-1 border text-xs font-medium cursor-pointer transition-all duration-200 rounded-sm focus:outline focus:outline-2 focus:outline-gray-800 focus:outline-offset-1 ${
           language === 'es'
             ? 'bg-gray-800 text-white border-gray-800'
-            : 'bg-white text-gray-500 border-gray-300 hover:bg-gray-100 hover:border-gray-400'
+            : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-100 hover:border-gray-400'
         }`}
         onClick={() => setLanguage('es')}
         aria-label={t('spanish')}

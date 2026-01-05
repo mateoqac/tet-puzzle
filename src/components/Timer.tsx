@@ -44,7 +44,7 @@ export default function Timer({ elapsedTime, isRunning, onTick }: TimerProps) {
       aria-live="off"
       aria-label={t('time')}
     >
-      <span class="flex items-center text-gray-500" aria-hidden="true">
+      <span class="flex items-center text-gray-600" aria-hidden="true">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="10" />
           <polyline points="12 6 12 12 16 14" />
