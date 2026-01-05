@@ -17,11 +17,12 @@ export default function Header({
   onOpenSettings,
 }: HeaderProps) {
   const { language, setLanguage, t } = useTranslation();
+  const basePath = language === 'es' ? '/es' : '';
 
   return (
     <header class="flex items-center justify-between py-3 px-4 bg-white border-b border-gray-100">
       {/* Logo */}
-      <a href="/" class="flex items-center gap-2 no-underline">
+      <a href={`${basePath}/`} class="flex items-center gap-2 no-underline">
         <div class="w-8 h-8 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-lg flex items-center justify-center shadow-sm">
           <span class="text-white font-bold text-sm">T</span>
         </div>

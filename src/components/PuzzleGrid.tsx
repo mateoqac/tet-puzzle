@@ -36,6 +36,11 @@ export default function PuzzleGrid({
   inputMode = 'keyboard',
   activeField = null,
 }: PuzzleGridProps) {
+  // Group cells by rows for proper ARIA grid structure
+  const rows = Array.from({ length: dimensions.rows }, (_, rowIndex) =>
+    grid.slice(rowIndex * dimensions.cols, (rowIndex + 1) * dimensions.cols)
+  );
+
   return (
     <div
       class="grid mx-auto w-fit border border-black bg-white"
@@ -46,28 +51,32 @@ export default function PuzzleGrid({
         gridTemplateRows: `repeat(${dimensions.rows}, 1fr)`,
       }}
     >
-      {grid.map((cell, index) => {
-        const validation = showValidation ? validateCell(cell, puzzle) : null;
-        const isSelected = cell.id === selectedCellId;
-        const isLastCol = (index + 1) % dimensions.cols === 0;
-        const isLastRow = index >= grid.length - dimensions.cols;
+      {rows.map((rowCells, rowIndex) => (
+        <div key={rowIndex} role="row" class="contents">
+          {rowCells.map((cell, colIndex) => {
+            const validation = showValidation ? validateCell(cell, puzzle) : null;
+            const isSelected = cell.id === selectedCellId;
+            const isLastCol = colIndex === dimensions.cols - 1;
+            const isLastRow = rowIndex === dimensions.rows - 1;
 
-        return (
-          <GridCellComponent
-            key={cell.id}
-            cell={cell}
-            isSelected={isSelected}
-            validation={validation}
-            onInput={onCellInput}
-            onSelect={onCellSelect}
-            onNavigate={onCellNavigate}
-            isLastCol={isLastCol}
-            isLastRow={isLastRow}
-            inputMode={inputMode}
-            activeField={isSelected ? activeField : null}
-          />
-        );
-      })}
+            return (
+              <GridCellComponent
+                key={cell.id}
+                cell={cell}
+                isSelected={isSelected}
+                validation={validation}
+                onInput={onCellInput}
+                onSelect={onCellSelect}
+                onNavigate={onCellNavigate}
+                isLastCol={isLastCol}
+                isLastRow={isLastRow}
+                inputMode={inputMode}
+                activeField={isSelected ? activeField : null}
+              />
+            );
+          })}
+        </div>
+      ))}
     </div>
   );
 }

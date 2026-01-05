@@ -389,6 +389,33 @@ describe('PuzzleGrid', () => {
         expect(cell).toHaveAttribute('tabIndex', '0');
       });
     });
+
+    it('should have proper ARIA grid structure with row elements', () => {
+      render(
+        <PuzzleGrid
+          grid={mockGrid}
+          dimensions={{ rows: 2, cols: 2 }}
+          selectedCellId={null}
+          showValidation={false}
+          puzzle={mockPuzzle}
+          {...mockHandlers}
+        />
+      );
+
+      // Grid should contain row elements
+      const rows = screen.getAllByRole('row');
+      expect(rows).toHaveLength(2);
+
+      // Each row should contain gridcells
+      const gridCells = screen.getAllByRole('gridcell');
+      expect(gridCells).toHaveLength(4);
+
+      // Verify hierarchy: grid > row > gridcell
+      const grid = screen.getByRole('grid');
+      rows.forEach((row) => {
+        expect(grid).toContainElement(row);
+      });
+    });
   });
 
   describe('edge cases', () => {

@@ -14,12 +14,16 @@ const {
   canonicalPath,
   lastUpdated = "December 2024",
 } = Astro.props;
+
+const isSpanish = canonicalPath.startsWith("/es");
+const basePath = isSpanish ? "/es" : "";
+const backLabel = isSpanish ? "Volver al Juego" : "Back to Game";
 ---
 
 <BaseLayout title={title} description={description} canonicalPath={canonicalPath}>
   <main class="legal-page">
     <nav class="nav-back">
-      <a href="/">&larr; Back to Game</a>
+      <a href={`${basePath}/`}>&larr; {backLabel}</a>
     </nav>
 
     <article class="legal-content">
