@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect } from 'preact/hooks';
-import confetti from 'canvas-confetti';
 import type { PuzzleState, Operation } from '../types/puzzle';
 import { validatePuzzle, getHintForCell } from '../lib/puzzleValidator';
 import {
@@ -277,8 +276,10 @@ export default function TetPuzzle({ initialPuzzle }: TetPuzzleProps) {
     }
   };
 
-  // Trigger confetti celebration
-  const triggerConfetti = () => {
+  // Trigger confetti celebration (lazy loaded)
+  const triggerConfetti = async () => {
+    const confetti = (await import('canvas-confetti')).default;
+
     const burst = () => {
       // Center burst
       confetti({

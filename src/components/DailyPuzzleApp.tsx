@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect } from 'preact/hooks';
-import confetti from 'canvas-confetti';
 import type { PuzzleState, Operation } from '../types/puzzle';
 import { validatePuzzle, getHintForCell } from '../lib/puzzleValidator';
 import { recordGameWin, type Difficulty as StatsDifficulty, isDailyCompleted, recordDailyCompletion } from '../lib/statistics';
@@ -193,8 +192,10 @@ function DailyPuzzleInner({ initialPuzzle, dateString, puzzleNumber, difficulty 
     }
   };
 
-  // Confetti celebration
-  const triggerConfetti = () => {
+  // Confetti celebration (lazy loaded)
+  const triggerConfetti = async () => {
+    const confetti = (await import('canvas-confetti')).default;
+
     confetti({
       particleCount: 240,
       spread: 70,

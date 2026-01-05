@@ -64,6 +64,13 @@ const esUrl = `${siteUrl}/es${basePath === "/" ? "/" : basePath + "/"}`;
     <link rel="alternate" hreflang="es" href={esUrl} />
     <link rel="alternate" hreflang="x-default" href={enUrl} />
 
+    <!-- Resource Hints for Third-Party Scripts -->
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
+    <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin />
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+    <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
+    <link rel="dns-prefetch" href="https://www.googletagservices.com" />
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -76,11 +83,6 @@ const esUrl = `${siteUrl}/es${basePath === "/" ? "/" : basePath + "/"}`;
     <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
     <meta name="google-adsense-account" content="ca-pub-9282727224828020" />
 
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9282727224828020"
-      crossorigin="anonymous"></script>
-
     <!-- Additional head content from pages -->
     <slot name="head" />
   </head>
@@ -88,6 +90,23 @@ const esUrl = `${siteUrl}/es${basePath === "/" ? "/" : basePath + "/"}`;
     <slot />
     {showFooter && <Footer showLegalLinks={showLegalLinks} />}
     {(<Analytics />)}
+
+    <!-- AdSense - loaded after page content for better FCP/LCP -->
+    <script is:inline>
+      // Load AdSense after requestIdleCallback or fallback to setTimeout
+      const loadAdsense = () => {
+        const script = document.createElement('script');
+        script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9282727224828020';
+        script.async = true;
+        script.crossOrigin = 'anonymous';
+        document.head.appendChild(script);
+      };
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadAdsense, { timeout: 2000 });
+      } else {
+        setTimeout(loadAdsense, 1000);
+      }
+    </script>
   </body>
 </html>
 
