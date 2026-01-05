@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ArchiveList from "../../../components/ArchiveList";
+
+const title = "Archivo de Desafios Diarios | Tetonor";
+const description = "Explora todos los puzzles diarios anteriores. Sigue tu progreso y juega desafios pasados.";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/es/daily/archive"
+  showFooter={false}
+  lang="es"
+>
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <ArchiveList client:load initialLang="es" />
+  </main>
+</BaseLayout>

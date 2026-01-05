@@ -1,7 +1,8 @@
 import { useTranslation } from '../i18n';
 
 export default function HomepageSeoContent() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const basePath = language === 'es' ? '/es' : '';
 
   return (
     <div class="max-w-[800px] mx-auto mt-12 px-4">
@@ -15,7 +16,7 @@ export default function HomepageSeoContent() {
           <li>{t('seoHowToPlayStep3')}</li>
           <li>{t('seoHowToPlayStep4')}</li>
         </ul>
-        <a href="/how-to-play" class="inline-block mt-4 text-black underline hover:text-gray-600">
+        <a href={`${basePath}/how-to-play/`} class="inline-block mt-4 text-black underline hover:text-gray-600">
           {t('seoLearnMore')}
         </a>
       </section>
@@ -64,7 +65,7 @@ export default function HomepageSeoContent() {
             </div>
           </details>
         </div>
-        <a href="/faq" class="inline-block mt-4 text-black underline hover:text-gray-600">
+        <a href={`${basePath}/faq/`} class="inline-block mt-4 text-black underline hover:text-gray-600">
           {t('seoViewAllFaq')}
         </a>
       </section>

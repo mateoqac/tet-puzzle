@@ -1,6 +1,8 @@
 ---
 import Footer from "../components/Footer.astro";
 import Analytics from "@vercel/analytics/astro";
+import type { Language } from "../i18n/translations";
+
 interface Props {
   title: string;
   description: string;
@@ -8,6 +10,7 @@ interface Props {
   robots?: string;
   showFooter?: boolean;
   showLegalLinks?: boolean;
+  lang?: Language;
 }
 
 const siteUrl = "https://tetonor.app";
@@ -18,12 +21,31 @@ const {
   robots = "index, follow",
   showFooter = true,
   showLegalLinks = true,
+  lang = "en",
 } = Astro.props;
-const canonicalUrl = `${siteUrl}${canonicalPath}`;
+
+// Build canonical URL with trailing slash
+const canonicalUrl = `${siteUrl}${canonicalPath}${canonicalPath.endsWith("/") ? "" : "/"}`;
+
+// Build alternate URLs for hreflang
+// English is at root, Spanish at /es/
+// canonicalPath may or may not already have /es prefix depending on the page
+const getBasePath = (path: string) => {
+  // Remove /es prefix if present to get the base path
+  const normalizedPath = path.endsWith("/") ? path.slice(0, -1) : path;
+  if (normalizedPath.startsWith("/es")) {
+    return normalizedPath.slice(3) || "/";
+  }
+  return normalizedPath || "/";
+};
+
+const basePath = getBasePath(canonicalPath);
+const enUrl = `${siteUrl}${basePath === "/" ? "/" : basePath + "/"}`;
+const esUrl = `${siteUrl}/es${basePath === "/" ? "/" : basePath + "/"}`;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -38,9 +60,9 @@ const canonicalUrl = `${siteUrl}${canonicalPath}`;
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Hreflang for multilingual support -->
-    <link rel="alternate" hreflang="en" href={canonicalUrl} />
-    <link rel="alternate" hreflang="es" href={canonicalUrl} />
-    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="es" href={esUrl} />
+    <link rel="alternate" hreflang="x-default" href={enUrl} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

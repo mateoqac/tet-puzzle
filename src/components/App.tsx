@@ -6,6 +6,7 @@ import HomepageSeoContent from './HomepageSeoContent';
 
 interface AppProps {
   initialPuzzle: PuzzleState;
+  initialLang?: Language;
 }
 
 function LanguageSelector() {
@@ -41,8 +42,8 @@ function LanguageSelector() {
   );
 }
 
-export default function App({ initialPuzzle }: AppProps) {
-  const i18n = useI18n();
+export default function App({ initialPuzzle, initialLang }: AppProps) {
+  const i18n = useI18n(initialLang);
 
   return (
     <I18nContext.Provider value={i18n}>

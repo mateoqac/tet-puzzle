@@ -1,0 +1,210 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import App from "../../components/App";
+import AdUnit from "../../components/AdUnit";
+import { generateBeginnerPuzzle } from "../../lib/puzzleGenerator";
+import SpeedInsights from "@vercel/speed-insights/astro";
+import { getTranslations } from "../../i18n";
+
+const puzzle = generateBeginnerPuzzle();
+const t = getTranslations("es");
+
+const siteUrl = "https://tetonor.app";
+const title = "Tet Puzzle - Juego de Logica Numerica Gratis Online";
+const description =
+  "Juega Tet puzzle online, un desafiante juego de logica numerica. Empareja pares de numeros para crear sumas y productos en este puzzle de entrenamiento mental. Gratis para jugar diariamente.";
+const imageUrl = `${siteUrl}/og-image.png`;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "Tet Puzzle",
+      url: siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/logo-512.png`,
+        width: 512,
+        height: 512,
+      },
+      foundingDate: "2024",
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Tet Puzzle",
+      description: description,
+      publisher: { "@id": `${siteUrl}/#organization` },
+      inLanguage: ["en", "es"],
+    },
+    {
+      "@type": "WebApplication",
+      "@id": `${siteUrl}/es/#webapp`,
+      name: "Tet Puzzle",
+      url: `${siteUrl}/es/`,
+      description: description,
+      applicationCategory: "GameApplication",
+      operatingSystem: "Any",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      browserRequirements: "Requires JavaScript enabled",
+      inLanguage: "es-ES",
+    },
+    {
+      "@type": "Game",
+      "@id": `${siteUrl}/es/#game`,
+      name: "Tet Puzzle",
+      description:
+        "Tet puzzle es un juego de logica numerica donde los jugadores emparejan pares de numeros para lograr sumas y productos objetivo.",
+      gamePlatform: ["Web browser", "Mobile browser"],
+      genre: ["Puzzle", "Logica", "Matematicas"],
+      numberOfPlayers: {
+        "@type": "QuantitativeValue",
+        value: "1",
+      },
+      playMode: "SinglePlayer",
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Que es Tet puzzle?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Tet puzzle es un juego de logica numerica. Los jugadores deben emparejar pares de numeros de un grupo para rellenar celdas en una cuadricula, donde cada par debe satisfacer tanto un requisito de suma como de producto.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Como se juega Tet puzzle?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "En Tet puzzle, se te da una cuadricula con celdas que muestran sumas y productos objetivo. Debes seleccionar pares de numeros del grupo disponible que sumen el objetivo y se multipliquen para dar el producto. Cada numero solo puede usarse una vez.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Que hace a Tet puzzle desafiante?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Tet puzzle desafia a los jugadores con logica numerica y razonamiento matematico. Cada par de numeros debe usarse exactamente dos veces - una para suma y otra para multiplicacion.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Es gratis jugar Tet Puzzle?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Si, Tet Puzzle es completamente gratis. No requiere registro ni pago.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Con que frecuencia hay nuevos puzzles?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Un nuevo puzzle de Desafio Diario esta disponible cada dia. Tambien puedes jugar puzzles ilimitados en Juego Libre en cualquier momento.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Puedo jugar puzzles diarios anteriores?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Si! Visita el Archivo para acceder y jugar todos los puzzles de desafios diarios anteriores.",
+          },
+        },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/es"
+  robots="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  showFooter={false}
+  lang="es"
+>
+  <Fragment slot="head">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${siteUrl}/es/`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Tet Puzzle" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={`${siteUrl}/es/`} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+
+    <!-- Additional Meta -->
+    <meta
+      name="keywords"
+      content="tet puzzle, tetonor, puzzle numerico, juego de logica, rompecabezas, puzzle matematico, puzzle diario, puzzle gratis online, juego de aritmetica, logica numerica"
+    />
+    <meta name="author" content="Tet Puzzle" />
+
+    <!-- Structured Data -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+  </Fragment>
+
+  <div class="flex justify-center gap-8 max-w-[1400px] mx-auto">
+    <aside
+      class="hidden xl:block shrink-0 w-40 self-start sticky top-8"
+      aria-hidden="true"
+    >
+      <AdUnit client:only="preact" slot="5475429127" />
+    </aside>
+
+    <main id="main-content" role="main" class="flex-initial min-w-0 w-full">
+      <header class="sr-only">
+        <h1>Juega Tet Puzzle Online Gratis - Juego de Logica Numerica</h1>
+        <p>
+          Tet puzzle es un desafiante juego de logica numerica. El puzzle presenta una
+          cuadricula donde cada celda contiene un numero objetivo. Los jugadores deben encontrar pares
+          de numeros de un grupo dado que tanto sumen el objetivo como se multipliquen
+          para dar el producto. Cada numero del grupo solo puede usarse una vez,
+          requiriendo deduccion logica cuidadosa para resolver toda la cuadricula. Esta
+          version online te permite jugar puzzles Tet gratis, con diferentes
+          niveles de dificultad desde facil hasta experto.
+        </p>
+      </header>
+
+      <article itemscope itemtype="https://schema.org/Game">
+        <meta itemprop="name" content="Tet Puzzle" />
+        <meta itemprop="description" content={description} />
+        <App client:load initialPuzzle={puzzle} initialLang="es" />
+      </article>
+    </main>
+
+    <aside
+      class="hidden xl:block shrink-0 w-40 self-start sticky top-8"
+      aria-hidden="true"
+    >
+      <AdUnit client:only="preact" slot="4102637707" />
+    </aside>
+  </div>
+
+  <SpeedInsights />
+</BaseLayout>

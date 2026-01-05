@@ -1,0 +1,75 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import DailyPuzzleApp from "../../../components/DailyPuzzleApp";
+import {
+  generateDailyPuzzle,
+  isValidDailyDate,
+  getDailyChallengeNumber,
+  getDailyChallengeDifficulty,
+  LAUNCH_DATE,
+} from "../../../lib/dailyChallenge";
+
+// Get static paths for all valid dates
+export function getStaticPaths() {
+  const today = new Date();
+  const launchDate = new Date(LAUNCH_DATE);
+  const paths = [];
+
+  // Generate paths for all dates from launch to today
+  let currentDate = new Date(launchDate);
+  while (currentDate <= today) {
+    const dateString = currentDate.toISOString().split("T")[0];
+    paths.push({
+      params: { date: dateString },
+    });
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return paths;
+}
+
+const { date } = Astro.params;
+
+// Validate date
+if (!date || !isValidDailyDate(date)) {
+  return Astro.redirect("/es/daily/archive/");
+}
+
+const puzzle = generateDailyPuzzle(date);
+const puzzleNumber = getDailyChallengeNumber(date);
+const difficulty = getDailyChallengeDifficulty(date);
+
+const formattedDate = new Date(date).toLocaleDateString("es-ES", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+
+const difficultyTranslations: Record<string, string> = {
+  easy: "facil",
+  moderate: "moderado",
+  difficult: "dificil",
+};
+
+const title = `Desafio Diario #${puzzleNumber} - ${formattedDate} | Tetonor`;
+const description = `Juega el desafio diario de Tetonor #${puzzleNumber} del ${formattedDate}. Un puzzle de logica numerica de dificultad ${difficultyTranslations[difficulty] || difficulty}.`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath={`/es/daily/${date}`}
+  showFooter={false}
+  lang="es"
+>
+  <main class="max-w-4xl mx-auto px-4 py-4">
+    <DailyPuzzleApp
+      client:load
+      initialPuzzle={puzzle}
+      dateString={date}
+      puzzleNumber={puzzleNumber}
+      difficulty={difficulty}
+      initialLang="es"
+    />
+  </main>
+</BaseLayout>

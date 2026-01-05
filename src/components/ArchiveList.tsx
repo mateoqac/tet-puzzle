@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'preact/hooks';
-import { useTranslation, useI18n, I18nContext } from '../i18n';
+import { useTranslation, useI18n, I18nContext, type Language } from '../i18n';
 import {
   getAllDailyChallenges,
   type DailyChallengeInfo,
@@ -28,8 +28,9 @@ function DifficultyBadge({ difficulty }: { difficulty: string }) {
   );
 }
 
-function ArchiveListInner() {
+function ArchiveListInner({ lang }: { lang: Language }) {
   const { t } = useTranslation();
+  const basePath = lang === 'es' ? '/es' : '';
   const [challenges, setChallenges] = useState<DailyChallengeInfo[]>([]);
   const [sortMode, setSortMode] = useState<SortMode>('id-desc');
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
@@ -137,7 +138,7 @@ function ArchiveListInner() {
         {visibleChallenges.map((challenge) => (
           <a
             key={challenge.dateString}
-            href={`/daily/${challenge.dateString}`}
+            href={`${basePath}/daily/${challenge.dateString}/`}
             class={`flex items-center justify-between p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 no-underline group ${
               challenge.isCompleted ? 'border-l-4 border-emerald-500' : ''
             }`}
@@ -194,12 +195,12 @@ function ArchiveListInner() {
 }
 
 // Wrapper with i18n context
-export default function ArchiveList() {
-  const i18n = useI18n();
+export default function ArchiveList({ initialLang = 'en' }: { initialLang?: Language }) {
+  const i18n = useI18n(initialLang);
 
   return (
     <I18nContext.Provider value={i18n}>
-      <ArchiveListInner />
+      <ArchiveListInner lang={initialLang} />
     </I18nContext.Provider>
   );
 }

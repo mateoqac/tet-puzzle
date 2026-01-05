@@ -35,7 +35,8 @@ interface TetPuzzleProps {
 }
 
 export default function TetPuzzle({ initialPuzzle }: TetPuzzleProps) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const basePath = language === 'es' ? '/es' : '';
   const [puzzle, setPuzzle] = useState<PuzzleState>(initialPuzzle);
   const [difficulty, setDifficulty] = useState<Difficulty>('easy');
   const [gameMode, setGameMode] = useState<GameMode>('free');
@@ -602,7 +603,7 @@ export default function TetPuzzle({ initialPuzzle }: TetPuzzleProps) {
       {/* View All Challenges Link - shown when in daily mode */}
       {gameMode === 'daily' && (
         <a
-          href="/daily/archive"
+          href={`${basePath}/daily/archive/`}
           class="flex items-center gap-3 p-4 mt-6 bg-gray-50 hover:bg-gray-100 rounded-xl transition-all duration-200 group no-underline"
         >
           <div class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">

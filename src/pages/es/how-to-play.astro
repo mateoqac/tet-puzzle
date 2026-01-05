@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HowToPlayContent from "../../components/HowToPlayContent";
+
+const title = "Como Jugar - Tet Puzzle";
+const description = "Aprende a jugar Tet Puzzle, el desafiante juego de logica numerica. Guia completa con reglas, consejos y ejemplos.";
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/es/how-to-play" showFooter={false} lang="es">
+  <HowToPlayContent client:load initialLang="es" />
+</BaseLayout>

@@ -32,7 +32,8 @@ function DifficultyBadge({ difficulty }: { difficulty: string }) {
 }
 
 export default function DailyArchive({ isOpen, onClose, onSelectPuzzle }: DailyArchiveProps) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const basePath = language === 'es' ? '/es' : '';
   const [challenges, setChallenges] = useState<DailyChallengeInfo[]>([]);
 
   useEffect(() => {
@@ -123,7 +124,7 @@ export default function DailyArchive({ isOpen, onClose, onSelectPuzzle }: DailyA
 
           {/* View All Link */}
           <a
-            href="/daily/archive"
+            href={`${basePath}/daily/archive/`}
             class="flex items-center justify-center gap-2 mt-4 py-3 text-sm text-emerald-600 hover:text-emerald-700 font-medium no-underline"
           >
             {t('viewAllChallenges')}

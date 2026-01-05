@@ -48,16 +48,25 @@ export function useTranslation() {
 }
 
 // Hook for i18n state management (use this in the root component)
-export function useI18n() {
-  const [language, setLanguageState] = useState<Language>('en');
+export function useI18n(serverLang?: Language) {
+  const [language, setLanguageState] = useState<Language>(serverLang || 'en');
   const [isInitialized, setIsInitialized] = useState(false);
 
   // Initialize language on mount
   useEffect(() => {
-    const initialLang = getInitialLanguage();
-    setLanguageState(initialLang);
+    // If server provided a language, use it as default but allow user override from localStorage
+    const storedLang = typeof localStorage !== 'undefined' ? localStorage.getItem(STORAGE_KEY) as Language | null : null;
+
+    // Priority: stored preference > server-provided lang > browser detection
+    if (storedLang && (storedLang === 'en' || storedLang === 'es')) {
+      setLanguageState(storedLang);
+    } else if (serverLang) {
+      setLanguageState(serverLang);
+    } else {
+      setLanguageState(getInitialLanguage());
+    }
     setIsInitialized(true);
-  }, []);
+  }, [serverLang]);
 
   // Set language and persist to localStorage
   const setLanguage = useCallback((lang: Language) => {
@@ -68,6 +77,34 @@ export function useI18n() {
     // Update html lang attribute
     if (typeof document !== 'undefined') {
       document.documentElement.lang = lang;
+    }
+    // Navigate to the correct URL for the language
+    if (typeof window !== 'undefined') {
+      const currentPath = window.location.pathname;
+      let newPath: string;
+
+      if (lang === 'es') {
+        // If not already on /es/, add /es/ prefix
+        if (!currentPath.startsWith('/es')) {
+          newPath = '/es' + (currentPath === '/' ? '/' : currentPath);
+        } else {
+          return; // Already on Spanish URL
+        }
+      } else {
+        // If on /es/, remove the prefix
+        if (currentPath.startsWith('/es')) {
+          newPath = currentPath.replace(/^\/es/, '') || '/';
+        } else {
+          return; // Already on English URL
+        }
+      }
+
+      // Ensure trailing slash
+      if (!newPath.endsWith('/')) {
+        newPath += '/';
+      }
+
+      window.location.href = newPath;
     }
   }, []);
 
@@ -86,3 +123,10 @@ export function useI18n() {
 
 // Export types and translations for external use
 export { translations, type Language, type TranslationKey };
+
+// Server-side translation helper for Astro pages
+export function getTranslations(lang: Language) {
+  return (key: TranslationKey): string => {
+    return translations[lang][key] || translations.en[key] || key;
+  };
+}

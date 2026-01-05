@@ -1,13 +1,14 @@
-import { I18nContext, useI18n, useTranslation } from '../i18n';
+import { I18nContext, useI18n, useTranslation, type Language } from '../i18n';
 import Footer from './Footer';
 
 function TermsInner() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const basePath = language === 'es' ? '/es' : '';
 
   return (
     <main class="max-w-[800px] mx-auto py-8 px-4">
       <nav class="mb-8">
-        <a href="/" class="text-gray-700 no-underline text-base hover:underline">
+        <a href={`${basePath}/`} class="text-gray-700 no-underline text-base hover:underline">
           {t('backToGame')}
         </a>
       </nav>
@@ -90,7 +91,7 @@ function TermsInner() {
 
         <div class="text-center mt-8 pt-4">
           <a
-            href="/"
+            href={`${basePath}/`}
             class="inline-block px-8 py-3 bg-black text-white no-underline font-medium border border-black transition-all hover:bg-gray-800"
           >
             {t('playNow')}
@@ -103,8 +104,8 @@ function TermsInner() {
   );
 }
 
-export default function TermsContent() {
-  const i18n = useI18n();
+export default function TermsContent({ initialLang = 'en' }: { initialLang?: Language }) {
+  const i18n = useI18n(initialLang);
 
   return (
     <I18nContext.Provider value={i18n}>

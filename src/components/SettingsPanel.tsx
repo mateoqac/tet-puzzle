@@ -9,7 +9,8 @@ interface SettingsPanelProps {
 }
 
 export default function SettingsPanel({ isOpen, onClose, onSettingsChange }: SettingsPanelProps) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const basePath = language === 'es' ? '/es' : '';
   const [settings, setSettings] = useState<Settings>(getSettings());
 
   useEffect(() => {
@@ -183,7 +184,7 @@ export default function SettingsPanel({ isOpen, onClose, onSettingsChange }: Set
 
           {/* Daily Challenge Link */}
           <a
-            href="/daily/archive"
+            href={`${basePath}/daily/archive/`}
             class="flex items-center gap-3 p-4 bg-gray-50 hover:bg-gray-100 rounded-xl transition-all duration-200 group no-underline"
           >
             <div class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">

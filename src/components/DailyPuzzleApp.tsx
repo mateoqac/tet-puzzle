@@ -4,7 +4,7 @@ import type { PuzzleState, Operation } from '../types/puzzle';
 import { validatePuzzle, getHintForCell } from '../lib/puzzleValidator';
 import { recordGameWin, type Difficulty as StatsDifficulty, isDailyCompleted, recordDailyCompletion } from '../lib/statistics';
 import { getSettings, type Settings } from '../lib/settings';
-import { I18nContext, useI18n, useTranslation } from '../i18n';
+import { I18nContext, useI18n, useTranslation, type Language } from '../i18n';
 import PuzzleGrid from './PuzzleGrid';
 import PuzzleStrip from './PuzzleStrip';
 import SuccessBanner from './SuccessBanner';
@@ -19,10 +19,12 @@ interface DailyPuzzleAppProps {
   dateString: string;
   puzzleNumber: number;
   difficulty: string;
+  initialLang?: Language;
 }
 
-function DailyPuzzleInner({ initialPuzzle, dateString, puzzleNumber, difficulty }: DailyPuzzleAppProps) {
-  const { t } = useTranslation();
+function DailyPuzzleInner({ initialPuzzle, dateString, puzzleNumber, difficulty }: Omit<DailyPuzzleAppProps, 'initialLang'>) {
+  const { t, language } = useTranslation();
+  const basePath = language === 'es' ? '/es' : '';
   const [puzzle, setPuzzle] = useState<PuzzleState>(initialPuzzle);
   const [selectedCell, setSelectedCell] = useState<string | null>(null);
   const [showValidation, setShowValidation] = useState(false);
@@ -304,7 +306,7 @@ function DailyPuzzleInner({ initialPuzzle, dateString, puzzleNumber, difficulty 
         elapsedTime={elapsedTime}
         showTimer={settings.showTimer}
         onOpenStats={() => setShowStats(true)}
-        onOpenArchive={() => window.location.href = '/daily/archive'}
+        onOpenArchive={() => window.location.href = `${basePath}/daily/archive/`}
         onOpenSettings={() => setShowSettings(true)}
       />
 
@@ -416,7 +418,7 @@ function DailyPuzzleInner({ initialPuzzle, dateString, puzzleNumber, difficulty 
 
         {/* View Archive Link */}
         <a
-          href="/daily/archive"
+          href={`${basePath}/daily/archive/`}
           class="flex items-center gap-3 p-4 mt-6 bg-gray-50 hover:bg-gray-100 rounded-xl transition-all duration-200 group no-underline"
         >
           <div class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
@@ -445,7 +447,7 @@ function DailyPuzzleInner({ initialPuzzle, dateString, puzzleNumber, difficulty 
         </a>
       </div>
 
-      <SuccessBanner isVisible={showSuccessBanner} onViewArchive={() => window.location.href = '/daily/archive'} elapsedTime={elapsedTime} />
+      <SuccessBanner isVisible={showSuccessBanner} onViewArchive={() => window.location.href = `${basePath}/daily/archive/`} elapsedTime={elapsedTime} />
       <StatsDisplay isOpen={showStats} onClose={() => setShowStats(false)} />
       <SettingsPanel
         isOpen={showSettings}
@@ -457,8 +459,8 @@ function DailyPuzzleInner({ initialPuzzle, dateString, puzzleNumber, difficulty 
   );
 }
 
-export default function DailyPuzzleApp(props: DailyPuzzleAppProps) {
-  const i18n = useI18n();
+export default function DailyPuzzleApp({ initialLang, ...props }: DailyPuzzleAppProps) {
+  const i18n = useI18n(initialLang);
 
   return (
     <I18nContext.Provider value={i18n}>

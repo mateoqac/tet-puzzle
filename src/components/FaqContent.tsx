@@ -1,8 +1,9 @@
-import { I18nContext, useI18n, useTranslation, type TranslationKey } from '../i18n';
+import { I18nContext, useI18n, useTranslation, type TranslationKey, type Language } from '../i18n';
 import Footer from './Footer';
 
 function FaqInner() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const basePath = language === 'es' ? '/es' : '';
 
   const faqs: Array<{ question: TranslationKey; answer: TranslationKey }> = [
     { question: 'faqQ1', answer: 'faqA1' },
@@ -20,7 +21,7 @@ function FaqInner() {
   return (
     <main class="max-w-[800px] mx-auto py-8 px-4">
       <nav class="mb-8">
-        <a href="/" class="text-gray-700 no-underline text-base hover:underline">
+        <a href={`${basePath}/`} class="text-gray-700 no-underline text-base hover:underline">
           {t('backToGame')}
         </a>
       </nav>
@@ -51,13 +52,13 @@ function FaqInner() {
           <h2 class="text-xl mb-3 text-black font-serif">{t('faqStillQuestions')}</h2>
           <p class="text-gray-500 mb-5">
             {t('faqCheckGuide').split('Cómo Jugar')[0]}
-            <a href="/how-to-play" class="text-black underline">{t('footerHowToPlay')}</a>
+            <a href={`${basePath}/how-to-play/`} class="text-black underline">{t('footerHowToPlay')}</a>
             {t('faqCheckGuide').includes('How to Play')
               ? t('faqCheckGuide').split('How to Play')[1]
               : t('faqCheckGuide').split('Cómo Jugar')[1] || ''}
           </p>
           <a
-            href="/"
+            href={`${basePath}/`}
             class="inline-block px-8 py-3 bg-black text-white no-underline font-medium border border-black transition-all hover:bg-gray-800"
           >
             {t('playNow')}
@@ -70,8 +71,8 @@ function FaqInner() {
   );
 }
 
-export default function FaqContent() {
-  const i18n = useI18n();
+export default function FaqContent({ initialLang = 'en' }: { initialLang?: Language }) {
+  const i18n = useI18n(initialLang);
 
   return (
     <I18nContext.Provider value={i18n}>

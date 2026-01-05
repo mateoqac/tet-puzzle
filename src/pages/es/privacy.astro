@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PrivacyContent from "../../components/PrivacyContent";
+
+const title = "Politica de Privacidad - Tet Puzzle";
+const description = "Politica de privacidad de Tet Puzzle. Como protegemos tu informacion y datos personales.";
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/es/privacy" showFooter={false} lang="es">
+  <PrivacyContent client:load initialLang="es" />
+</BaseLayout>

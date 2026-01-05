@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TermsContent from "../../components/TermsContent";
+
+const title = "Terminos de Servicio - Tet Puzzle";
+const description = "Terminos de servicio de Tet Puzzle. Terminos y condiciones de uso del sitio web y juego.";
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/es/terms" showFooter={false} lang="es">
+  <TermsContent client:load initialLang="es" />
+</BaseLayout>

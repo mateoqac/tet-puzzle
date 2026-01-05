@@ -7,5 +7,13 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://tetonor.app',
-  integrations: [preact(), tailwind(), sitemap()]
+  trailingSlash: 'always',
+  i18n: {
+    locales: ['en', 'es'],
+    defaultLocale: 'en',
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+  integrations: [preact(), tailwind(), sitemap()],
 });

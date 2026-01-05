@@ -1,16 +1,17 @@
 import { useTranslation } from '../i18n';
 
 export default function Footer() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const basePath = language === 'es' ? '/es' : '';
 
   const links = [
-    { href: '/', label: t('footerDailyChallenge') },
-    { href: '/daily/archive', label: t('footerArchive') },
-    { href: '/how-to-play', label: t('footerHowToPlay') },
-    { href: '/faq', label: t('footerFaq') },
-    { href: '/privacy', label: t('footerPrivacy') },
-    { href: '/terms', label: t('footerTerms') },
-    { href: '/cookies', label: t('footerCookies') },
+    { href: `${basePath}/`, label: t('footerDailyChallenge') },
+    { href: `${basePath}/daily/archive/`, label: t('footerArchive') },
+    { href: `${basePath}/how-to-play/`, label: t('footerHowToPlay') },
+    { href: `${basePath}/faq/`, label: t('footerFaq') },
+    { href: `${basePath}/privacy/`, label: t('footerPrivacy') },
+    { href: `${basePath}/terms/`, label: t('footerTerms') },
+    { href: `${basePath}/cookies/`, label: t('footerCookies') },
   ];
 
   return (
