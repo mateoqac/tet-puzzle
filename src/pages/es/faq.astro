@@ -1,11 +1,114 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import FaqContent from "../../components/FaqContent";
+import Footer from "../../components/Footer.astro";
 
 const title = "Preguntas Frecuentes - Tet Puzzle";
 const description = "Preguntas frecuentes sobre Tet Puzzle. Encuentra respuestas sobre el juego, reglas, desafios diarios y mas.";
+
+const faqs = [
+  {
+    question: "Que es Tet Puzzle?",
+    answer: "Tet Puzzle es un juego de logica numerica donde rellenas una cuadricula de 4x4 emparejando pares de numeros. Cada par de la tira debe usarse exactamente dos veces: una para suma y otra para multiplicacion, con resultados que coincidan con los numeros objetivo de la cuadricula. Combina habilidades aritmeticas con deduccion logica para una experiencia de puzzle unica."
+  },
+  {
+    question: "Como gano?",
+    answer: "Para ganar, debes rellenar correctamente las 16 celdas de la cuadricula. Cada celda necesita dos numeros y una operacion (+ o x) que produzca el numero objetivo mostrado. Asegurate de que cada par de numeros se use tanto para una suma como para una multiplicacion en algun lugar de la cuadricula. Cuando todas las celdas sean correctas y todos los pares esten usados correctamente, habras resuelto el puzzle!"
+  },
+  {
+    question: "Que significa 'usar cada par dos veces'?",
+    answer: "Cada par de numeros (como 3 y 7) debe aparecer en dos celdas: una donde los sumas (3 + 7 = 10) y otra donde los multiplicas (3 x 7 = 21). Esta es la regla fundamental que hace el puzzle desafiante. No puedes usar un par solo para suma o solo para multiplicacion - ambas operaciones son necesarias."
+  },
+  {
+    question: "Cuales son los niveles de dificultad?",
+    answer: "Facil: Todos los numeros son visibles en la tira, permitiendote enfocarte en aprender la mecanica. Moderado: Algunos numeros estan ocultos y deben deducirse de la informacion disponible. Dificil: La mayoria de numeros estan ocultos, requiriendo razonamiento logico cuidadoso y habilidades de deduccion avanzadas para resolver."
+  },
+  {
+    question: "Que es el Desafio Diario?",
+    answer: "El Desafio Diario es un puzzle especial que cambia cada dia a medianoche UTC. Todos los jugadores del mundo reciben el mismo puzzle ese dia, haciendolo perfecto para comparar tu tiempo de resolucion con amigos. Completa puzzles diarios para mantener tu racha! Tambien puedes acceder a todos los puzzles diarios anteriores en el Archivo."
+  },
+  {
+    question: "Como funcionan las pistas?",
+    answer: "Tienes 1 pista por partida. Al hacer clic en el boton de pista, se revelaran los numeros y operacion correctos para la celda actualmente seleccionada (o la primera celda incompleta si no hay ninguna seleccionada). El uso de pistas se registra en tus estadisticas, asi que intenta resolver puzzles sin pistas para mejores resultados."
+  },
+  {
+    question: "Como se registra mi progreso?",
+    answer: "Tus estadisticas se guardan localmente en tu navegador, incluyendo: partidas jugadas, partidas ganadas, mejores tiempos, tiempos promedio, racha actual de victorias y racha mas larga. Los datos persisten entre sesiones, para que puedas seguir tu mejora con el tiempo. No se requiere cuenta ni registro."
+  },
+  {
+    question: "Puedo cambiar el idioma?",
+    answer: "Si! Tet Puzzle esta disponible en ingles y espanol. Haz clic en el selector de idioma (EN/ES) en la esquina superior derecha para cambiar entre idiomas. Tu preferencia se guarda para futuras visitas."
+  },
+  {
+    question: "Que pasa si cometo un error?",
+    answer: "Puedes cambiar tus respuestas en cualquier momento antes de verificar. Usa el boton Reiniciar para borrar todas tus entradas y empezar de nuevo. Cuando hagas clic en 'Verificar Solucion', las celdas incorrectas se resaltaran en rojo, permitiendote identificar y corregir tus errores."
+  },
+  {
+    question: "Hay limite de tiempo?",
+    answer: "No, no hay limite de tiempo. Tomate el tiempo que necesites para resolver cada puzzle! Sin embargo, tu tiempo de completado se registra para seguimiento personal y comparar tu rendimiento en diferentes puzzles. Tiempos mas rapidos indican mejora en tus habilidades."
+  },
+  {
+    question: "Puedo jugar en dispositivos moviles?",
+    answer: "Si! Tet Puzzle es totalmente responsivo y funciona muy bien en smartphones y tablets. Puedes elegir entre entrada por teclado (escribe numeros directamente) o modo seleccion (toca celdas para elegir numeros de la tira) segun tu preferencia."
+  },
+  {
+    question: "Es gratis Tet Puzzle?",
+    answer: "Absolutamente! Tet Puzzle es completamente gratis. No se requiere registro, no hay funciones premium bloqueadas, y no hay limite en cuantos puzzles puedes jugar. Disfruta de partidas ilimitadas en Juego Libre y Desafios Diarios sin costo."
+  },
+  {
+    question: "Como puedo mejorar mi tiempo de resolucion?",
+    answer: "Empieza por las celdas mas restringidas - aquellas con numeros objetivo muy grandes o muy pequenos a menudo tienen menos soluciones posibles. Busca productos unicos que solo pueden formarse de una manera. Practica regularmente con el Desafio Diario para desarrollar reconocimiento de patrones y mejorar tus habilidades de deduccion logica."
+  },
+  {
+    question: "Que pasa si cierro el navegador a mitad de partida?",
+    answer: "Tu progreso de partida actual no se guarda si cierras el navegador o navegas a otra pagina. Sin embargo, las estadisticas de partidas completadas si se guardan. Para Desafios Diarios, puedes volver mas tarde el mismo dia para completar el puzzle, pero tendras que empezar desde el principio."
+  }
+];
 ---
 
 <BaseLayout title={title} description={description} canonicalPath="/es/faq" showFooter={false} lang="es">
-  <FaqContent client:idle initialLang="es" />
+  <main class="max-w-[800px] mx-auto py-8 px-4">
+    <nav class="mb-8">
+      <a href="/es/" class="text-gray-700 no-underline text-base hover:underline">
+        ← Volver al Juego
+      </a>
+    </nav>
+
+    <article>
+      <h1 class="text-[2rem] mb-1 text-black font-serif">Preguntas Frecuentes</h1>
+      <p class="text-gray-500 text-lg mb-8">Todo lo que necesitas saber sobre Tet Puzzle</p>
+
+      <div class="mb-12 space-y-2">
+        {faqs.map((faq, index) => (
+          <details class="border border-gray-200 group open:border-black">
+            <summary class="p-4 cursor-pointer font-medium text-black list-none flex items-start gap-3">
+              <span class="bg-gray-100 text-gray-500 text-xs w-6 h-6 inline-flex items-center justify-center rounded-full shrink-0">
+                {index + 1}
+              </span>
+              <span class="flex-1">{faq.question}</span>
+              <span class="text-xl text-gray-400 shrink-0 group-open:hidden">+</span>
+              <span class="text-xl text-gray-400 shrink-0 hidden group-open:inline">-</span>
+            </summary>
+            <div class="px-4 pb-4 pl-[3.25rem]">
+              <p class="text-gray-600 leading-relaxed m-0">{faq.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <div class="text-center p-8 bg-gray-50 border border-gray-100">
+        <h2 class="text-xl mb-3 text-black font-serif">Aun tienes preguntas?</h2>
+        <p class="text-gray-500 mb-5">
+          Consulta nuestra guia <a href="/es/how-to-play/" class="text-black underline">Como Jugar</a> para instrucciones detalladas, o simplemente empieza a jugar!
+        </p>
+        <a
+          href="/es/"
+          class="inline-block px-8 py-3 bg-black text-white no-underline font-medium border border-black transition-all hover:bg-gray-800"
+        >
+          Jugar Ahora
+        </a>
+      </div>
+    </article>
+
+    <Footer />
+  </main>
 </BaseLayout>

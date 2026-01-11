@@ -1,11 +1,114 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import FaqContent from "../components/FaqContent";
+import Footer from "../components/Footer.astro";
 
 const title = "FAQ - Tet Puzzle";
 const description = "Frequently asked questions about Tet Puzzle. Find answers about gameplay, rules, daily challenges, and more.";
+
+const faqs = [
+  {
+    question: "What is Tet Puzzle?",
+    answer: "Tet Puzzle is a number logic game where you fill a 4x4 grid by matching pairs of numbers. Each pair from the strip must be used exactly twice: once for addition and once for multiplication, with results matching the target numbers in the grid. It combines arithmetic skills with logical deduction for a unique puzzle experience."
+  },
+  {
+    question: "How do I win?",
+    answer: "To win, you must correctly fill all 16 cells in the grid. Each cell needs two numbers and an operation (+ or ×) that produces the target number shown. Make sure each number pair is used for both an addition and a multiplication somewhere in the grid. When all cells are correct and all pairs are properly used, you've solved the puzzle!"
+  },
+  {
+    question: "What does 'use each pair twice' mean?",
+    answer: "Every pair of numbers (like 3 and 7) must appear in two cells: one where you add them (3 + 7 = 10) and one where you multiply them (3 × 7 = 21). This is the core rule that makes the puzzle challenging. You cannot use a pair for only addition or only multiplication - both operations are required."
+  },
+  {
+    question: "What are the difficulty levels?",
+    answer: "Easy: All numbers are visible in the strip, allowing you to focus on learning the mechanics. Moderate: Some numbers are hidden and must be deduced from the available information. Difficult: Most numbers are hidden, requiring careful logical reasoning and advanced deduction skills to solve."
+  },
+  {
+    question: "What is the Daily Challenge?",
+    answer: "The Daily Challenge is a special puzzle that changes every day at midnight UTC. All players worldwide get the same puzzle for that day, making it perfect for comparing your solving time with friends. Complete daily puzzles to maintain your streak! You can also access all previous daily puzzles in the Archive."
+  },
+  {
+    question: "How do hints work?",
+    answer: "You get 1 hint per game. Clicking the hint button will reveal the correct numbers and operation for the currently selected cell (or the first incomplete cell if none is selected). Using a hint is tracked in your statistics, so try to solve puzzles without hints for the best results."
+  },
+  {
+    question: "How is my progress tracked?",
+    answer: "Your statistics are saved locally in your browser, including: games played, games won, best times, average times, current winning streak, and longest winning streak. The data persists between sessions, so you can track your improvement over time. No account or registration is required."
+  },
+  {
+    question: "Can I change the language?",
+    answer: "Yes! Tet Puzzle is available in English and Spanish. Click the language selector (EN/ES) in the top right corner to switch between languages. Your preference is saved for future visits."
+  },
+  {
+    question: "What if I make a mistake?",
+    answer: "You can change your answers at any time before checking. Use the Reset button to clear all your inputs and start fresh. When you click 'Check Solution', incorrect cells will be highlighted in red, allowing you to identify and fix your mistakes."
+  },
+  {
+    question: "Is there a time limit?",
+    answer: "No, there's no time limit. Take as long as you need to solve each puzzle! However, your completion time is recorded for personal tracking and comparing your performance across different puzzles. Faster times indicate improving skills."
+  },
+  {
+    question: "Can I play on mobile devices?",
+    answer: "Yes! Tet Puzzle is fully responsive and works great on smartphones and tablets. You can choose between keyboard input (type numbers directly) or selection mode (tap cells to pick numbers from the strip) depending on your preference."
+  },
+  {
+    question: "Is Tet Puzzle free?",
+    answer: "Absolutely! Tet Puzzle is completely free to play. There's no registration required, no premium features locked behind paywalls, and no limit on how many puzzles you can play. Enjoy unlimited Free Play games and Daily Challenges at no cost."
+  },
+  {
+    question: "How can I improve my solving time?",
+    answer: "Start with the most constrained cells - those with very large or very small target numbers often have fewer possible solutions. Look for unique products that can only be formed one way. Practice regularly with the Daily Challenge to develop pattern recognition and improve your logical deduction skills."
+  },
+  {
+    question: "What happens if I close the browser mid-game?",
+    answer: "Your current game progress is not saved if you close the browser or navigate away. However, completed game statistics are saved. For Daily Challenges, you can return later the same day to complete the puzzle, but you'll need to start from the beginning."
+  }
+];
 ---
 
 <BaseLayout title={title} description={description} canonicalPath="/faq" showFooter={false}>
-  <FaqContent client:idle />
+  <main class="max-w-[800px] mx-auto py-8 px-4">
+    <nav class="mb-8">
+      <a href="/" class="text-gray-700 no-underline text-base hover:underline">
+        ← Back to Game
+      </a>
+    </nav>
+
+    <article>
+      <h1 class="text-[2rem] mb-1 text-black font-serif">Frequently Asked Questions</h1>
+      <p class="text-gray-500 text-lg mb-8">Everything you need to know about Tet Puzzle</p>
+
+      <div class="mb-12 space-y-2">
+        {faqs.map((faq, index) => (
+          <details class="border border-gray-200 group open:border-black">
+            <summary class="p-4 cursor-pointer font-medium text-black list-none flex items-start gap-3">
+              <span class="bg-gray-100 text-gray-500 text-xs w-6 h-6 inline-flex items-center justify-center rounded-full shrink-0">
+                {index + 1}
+              </span>
+              <span class="flex-1">{faq.question}</span>
+              <span class="text-xl text-gray-400 shrink-0 group-open:hidden">+</span>
+              <span class="text-xl text-gray-400 shrink-0 hidden group-open:inline">-</span>
+            </summary>
+            <div class="px-4 pb-4 pl-[3.25rem]">
+              <p class="text-gray-600 leading-relaxed m-0">{faq.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <div class="text-center p-8 bg-gray-50 border border-gray-100">
+        <h2 class="text-xl mb-3 text-black font-serif">Still have questions?</h2>
+        <p class="text-gray-500 mb-5">
+          Check out our <a href="/how-to-play/" class="text-black underline">How to Play</a> guide for detailed instructions, or just dive in and start playing!
+        </p>
+        <a
+          href="/"
+          class="inline-block px-8 py-3 bg-black text-white no-underline font-medium border border-black transition-all hover:bg-gray-800"
+        >
+          Play Now
+        </a>
+      </div>
+    </article>
+
+    <Footer />
+  </main>
 </BaseLayout>

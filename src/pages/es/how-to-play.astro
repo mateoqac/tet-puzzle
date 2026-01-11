@@ -1,11 +1,115 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import HowToPlayContent from "../../components/HowToPlayContent";
+import Footer from "../../components/Footer.astro";
 
 const title = "Como Jugar - Tet Puzzle";
 const description = "Aprende a jugar Tet Puzzle, el desafiante juego de logica numerica. Guia completa con reglas, consejos y ejemplos.";
 ---
 
 <BaseLayout title={title} description={description} canonicalPath="/es/how-to-play" showFooter={false} lang="es">
-  <HowToPlayContent client:idle initialLang="es" />
+  <main class="max-w-[800px] mx-auto py-8 px-4">
+    <nav class="mb-8">
+      <a href="/es/" class="text-gray-700 no-underline text-base hover:underline">
+        ← Volver al Juego
+      </a>
+    </nav>
+
+    <article>
+      <h1 class="text-[2rem] mb-1 text-black font-serif">Como Jugar</h1>
+      <p class="text-gray-500 text-lg mb-8">Aprende las reglas de Tet Puzzle</p>
+
+      <section class="mb-8 pb-6 border-b border-gray-100">
+        <h2 class="text-xl text-black mb-3 font-serif">1. La Cuadricula</h2>
+        <p class="text-gray-600 leading-relaxed">
+          El puzzle consiste en una cuadricula de 4x4 con 16 celdas. Cada celda muestra un numero objetivo que debes alcanzar usando los numeros de la tira inferior. Tu meta es rellenar cada celda con la combinacion correcta de numeros y operaciones.
+        </p>
+      </section>
+
+      <section class="mb-8 pb-6 border-b border-gray-100">
+        <h2 class="text-xl text-black mb-3 font-serif">2. La Tira de Numeros</h2>
+        <p class="text-gray-600 leading-relaxed">
+          Debajo de la cuadricula encontraras una tira con pares de numeros. Cada par puede usarse exactamente dos veces: una para una suma y otra para una multiplicacion. Esta es la mecanica central que hace a Tet Puzzle unico y desafiante.
+        </p>
+      </section>
+
+      <section class="mb-8 pb-6 border-b border-gray-100">
+        <h2 class="text-xl text-black mb-3 font-serif">3. Rellena las Celdas</h2>
+        <p class="text-gray-600 leading-relaxed mb-3">Para cada celda de la cuadricula:</p>
+        <ul class="text-gray-600 ml-6 space-y-2 list-disc">
+          <li>Introduce dos numeros de la tira</li>
+          <li>Selecciona una operacion (+ para suma, x para multiplicacion)</li>
+          <li>El resultado debe ser igual al numero objetivo mostrado en la celda</li>
+        </ul>
+      </section>
+
+      <section class="mb-8 pb-6 border-b border-gray-100">
+        <h2 class="text-xl text-black mb-3 font-serif">4. La Regla Clave</h2>
+        <div class="bg-gray-50 border-2 border-black p-5 mt-2">
+          <p class="m-0 text-center font-medium">
+            Cada par de numeros debe usarse exactamente dos veces: Una vez sumandolos, y otra multiplicandolos.
+          </p>
+        </div>
+        <p class="text-gray-600 leading-relaxed mt-4">
+          Esta regla fundamental es lo que distingue a Tet Puzzle de otros juegos de numeros. No puedes simplemente encontrar dos numeros que produzcan el objetivo - debes asegurarte de que cada par satisfaga tanto un requisito de suma como de multiplicacion en algun lugar de la cuadricula.
+        </p>
+      </section>
+
+      <section class="mb-8 pb-6 border-b border-gray-100">
+        <h2 class="text-xl text-black mb-3 font-serif">5. Ejemplo</h2>
+        <p class="text-gray-600 leading-relaxed mb-3">Si la tira contiene el par 3 y 7:</p>
+        <ul class="text-gray-600 ml-6 space-y-2 list-disc">
+          <li><strong>Suma:</strong> Debes usar 3 + 7 = 10 en una celda</li>
+          <li><strong>Multiplicacion:</strong> Y 3 x 7 = 21 en otra celda</li>
+        </ul>
+        <p class="text-gray-600 leading-relaxed mt-3">
+          Ambas celdas son necesarias - no puedes usar el par 3,7 solo para suma o solo para multiplicacion. Esta restriccion es lo que crea el desafio logico.
+        </p>
+      </section>
+
+      <section class="mb-8 pb-6 border-b border-gray-100">
+        <h2 class="text-xl text-black mb-3 font-serif">6. Niveles de Dificultad</h2>
+        <p class="text-gray-600 leading-relaxed mb-3">Tet Puzzle ofrece tres niveles de dificultad para adaptarse a tu habilidad:</p>
+        <ul class="text-gray-600 ml-6 space-y-2 list-disc">
+          <li><strong>Facil:</strong> Todos los numeros visibles, calculos simples. Perfecto para aprender la mecanica.</li>
+          <li><strong>Moderado:</strong> Algunos numeros ocultos, requiere deduccion. Un desafio equilibrado para jugadores regulares.</li>
+          <li><strong>Dificil:</strong> La mayoria de numeros ocultos, logica desafiante. Para expertos en puzzles que buscan una prueba real.</li>
+        </ul>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl text-black mb-3 font-serif">7. Consejos para el Exito</h2>
+        <ul class="text-gray-600 ml-6 space-y-2 list-disc">
+          <li><strong>Comienza por los extremos:</strong> Empieza con los numeros objetivo mas grandes o pequenos - a menudo tienen menos combinaciones posibles.</li>
+          <li><strong>Busca productos unicos:</strong> Algunos numeros solo pueden hacerse de una forma mediante multiplicacion (como los numeros primos).</li>
+          <li><strong>Lleva registro de tus pares:</strong> Mantiene nota mental de que pares has usado para suma vs. multiplicacion.</li>
+          <li><strong>Usa las pistas sabiamente:</strong> Tienes 1 pista por partida - guardala para cuando estes realmente atascado.</li>
+          <li><strong>Prueba los Desafios Diarios:</strong> Practica con un puzzle nuevo cada dia para mejorar tus habilidades.</li>
+        </ul>
+      </section>
+
+      <section class="mb-8 bg-gray-50 p-6 border border-gray-200">
+        <h2 class="text-xl text-black mb-3 font-serif">Listo para Jugar?</h2>
+        <p class="text-gray-600 leading-relaxed mb-4">
+          Ahora que conoces las reglas, es hora de poner a prueba tus habilidades. Comienza con un puzzle Facil para familiarizarte, luego avanza hasta el desafiante nivel Dificil.
+        </p>
+        <div class="text-center">
+          <a
+            href="/es/"
+            class="inline-block px-8 py-3 bg-black text-white no-underline font-medium border border-black transition-all hover:bg-gray-800"
+          >
+            Jugar Ahora
+          </a>
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl text-black mb-3 font-serif">Aun tienes preguntas?</h2>
+        <p class="text-gray-600 leading-relaxed">
+          Consulta nuestras <a href="/es/faq/" class="text-black underline hover:no-underline">Preguntas Frecuentes</a> para respuestas mas detalladas sobre el juego, seguimiento de estadisticas y otras funciones.
+        </p>
+      </section>
+    </article>
+
+    <Footer />
+  </main>
 </BaseLayout>

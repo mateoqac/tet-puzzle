@@ -1,11 +1,117 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HowToPlayContent from "../components/HowToPlayContent";
+import Footer from "../components/Footer.astro";
+import { getTranslations } from "../i18n";
 
+const t = getTranslations("en");
 const title = "How to Play - Tet Puzzle";
 const description = "Learn how to play Tet Puzzle, the challenging number logic game. Complete guide with rules, tips, and examples.";
 ---
 
 <BaseLayout title={title} description={description} canonicalPath="/how-to-play" showFooter={false}>
-  <HowToPlayContent client:idle />
+  <main class="max-w-[800px] mx-auto py-8 px-4">
+    <nav class="mb-8">
+      <a href="/" class="text-gray-700 no-underline text-base hover:underline">
+        ← Back to Game
+      </a>
+    </nav>
+
+    <article>
+      <h1 class="text-[2rem] mb-1 text-black font-serif">How to Play</h1>
+      <p class="text-gray-500 text-lg mb-8">Learn the rules of Tet Puzzle</p>
+
+      <section class="mb-8 pb-6 border-b border-gray-100">
+        <h2 class="text-xl text-black mb-3 font-serif">1. The Grid</h2>
+        <p class="text-gray-600 leading-relaxed">
+          The puzzle consists of a 4x4 grid with 16 cells. Each cell displays a target number that you need to achieve using the numbers from the strip below. Your goal is to fill every cell with the correct combination of numbers and operations.
+        </p>
+      </section>
+
+      <section class="mb-8 pb-6 border-b border-gray-100">
+        <h2 class="text-xl text-black mb-3 font-serif">2. The Number Strip</h2>
+        <p class="text-gray-600 leading-relaxed">
+          Below the grid, you'll find a strip with pairs of numbers. Each pair can be used exactly twice: once for an addition and once for a multiplication. This is the core mechanic that makes Tet Puzzle unique and challenging.
+        </p>
+      </section>
+
+      <section class="mb-8 pb-6 border-b border-gray-100">
+        <h2 class="text-xl text-black mb-3 font-serif">3. Fill the Cells</h2>
+        <p class="text-gray-600 leading-relaxed mb-3">For each cell in the grid:</p>
+        <ul class="text-gray-600 ml-6 space-y-2 list-disc">
+          <li>Enter two numbers from the strip</li>
+          <li>Select an operation (+ for addition, × for multiplication)</li>
+          <li>The result must equal the target number shown in the cell</li>
+        </ul>
+      </section>
+
+      <section class="mb-8 pb-6 border-b border-gray-100">
+        <h2 class="text-xl text-black mb-3 font-serif">4. The Key Rule</h2>
+        <div class="bg-gray-50 border-2 border-black p-5 mt-2">
+          <p class="m-0 text-center font-medium">
+            Every pair of numbers must be used exactly twice: Once where they are added together, and once where they are multiplied.
+          </p>
+        </div>
+        <p class="text-gray-600 leading-relaxed mt-4">
+          This fundamental rule is what distinguishes Tet Puzzle from other number games. You cannot simply find any two numbers that produce the target - you must ensure that each pair satisfies both an addition and multiplication requirement somewhere in the grid.
+        </p>
+      </section>
+
+      <section class="mb-8 pb-6 border-b border-gray-100">
+        <h2 class="text-xl text-black mb-3 font-serif">5. Example</h2>
+        <p class="text-gray-600 leading-relaxed mb-3">If the strip contains the pair 3 and 7:</p>
+        <ul class="text-gray-600 ml-6 space-y-2 list-disc">
+          <li><strong>Addition:</strong> You must use 3 + 7 = 10 in one cell</li>
+          <li><strong>Multiplication:</strong> And 3 × 7 = 21 in another cell</li>
+        </ul>
+        <p class="text-gray-600 leading-relaxed mt-3">
+          Both cells are necessary - you cannot use the pair 3,7 for just addition or just multiplication. This constraint is what creates the logical challenge.
+        </p>
+      </section>
+
+      <section class="mb-8 pb-6 border-b border-gray-100">
+        <h2 class="text-xl text-black mb-3 font-serif">6. Difficulty Levels</h2>
+        <p class="text-gray-600 leading-relaxed mb-3">Tet Puzzle offers three difficulty levels to match your skill:</p>
+        <ul class="text-gray-600 ml-6 space-y-2 list-disc">
+          <li><strong>Easy:</strong> All numbers visible, simpler calculations. Perfect for learning the mechanics.</li>
+          <li><strong>Moderate:</strong> Some numbers hidden, requires deduction. A balanced challenge for regular players.</li>
+          <li><strong>Difficult:</strong> Most numbers hidden, challenging logic. For puzzle experts seeking a real test.</li>
+        </ul>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl text-black mb-3 font-serif">7. Tips for Success</h2>
+        <ul class="text-gray-600 ml-6 space-y-2 list-disc">
+          <li><strong>Start with extremes:</strong> Begin with the largest or smallest target numbers - they often have fewer possible combinations.</li>
+          <li><strong>Look for unique products:</strong> Some numbers can only be made one way through multiplication (like prime numbers).</li>
+          <li><strong>Track your pairs:</strong> Keep mental note of which pairs you've used for addition vs. multiplication.</li>
+          <li><strong>Use hints wisely:</strong> You get 1 hint per game - save it for when you're truly stuck.</li>
+          <li><strong>Try Daily Challenges:</strong> Practice with a fresh puzzle every day to improve your skills.</li>
+        </ul>
+      </section>
+
+      <section class="mb-8 bg-gray-50 p-6 border border-gray-200">
+        <h2 class="text-xl text-black mb-3 font-serif">Ready to Play?</h2>
+        <p class="text-gray-600 leading-relaxed mb-4">
+          Now that you know the rules, it's time to put your skills to the test. Start with an Easy puzzle to get comfortable, then work your way up to the challenging Difficult level.
+        </p>
+        <div class="text-center">
+          <a
+            href="/"
+            class="inline-block px-8 py-3 bg-black text-white no-underline font-medium border border-black transition-all hover:bg-gray-800"
+          >
+            Play Now
+          </a>
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl text-black mb-3 font-serif">Still Have Questions?</h2>
+        <p class="text-gray-600 leading-relaxed">
+          Check out our <a href="/faq/" class="text-black underline hover:no-underline">Frequently Asked Questions</a> for more detailed answers about gameplay, statistics tracking, and other features.
+        </p>
+      </section>
+    </article>
+
+    <Footer />
+  </main>
 </BaseLayout>
